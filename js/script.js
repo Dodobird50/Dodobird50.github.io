@@ -1,1 +1,3155 @@
-$(document).ready(function(){function e(e,t,a,o,s){this.year=e,this.month=t,this.day=a,this.hour=o,this.minute=s}var t,a,o,s,i,n,r,l,c,d,h,p,u,f,y,g,m,v,x,b,L,k,S,w,M,C,T,A,H,_,I,E,B,N,D,W,R,O,P,U;function z(t){B=t;for(var a=0;a<B.length;a++)B[a].getEntry=function(e){for(var t=this.entries,a=0;a<t.length;a++)if(t[a].s==e)return t[a];return null};N=B[B.length-1],D=N.entries,W=new e(N.year,N.month,N.day,N.hour,N.minute),R=B[B.length-2],O=R.entries,X()}function F(e,t){if(e.s==t.s)return 0;U.startsWith("case mortality rate")?tiebreakerOrder=["c_m_r","d","c","c_p_c","s"]:U.startsWith("total cases")?U.startsWith("total cases per 100,000 people")?tiebreakerOrder=["c_p_c","c","d","c_m_r","s"]:tiebreakerOrder=["c","c_p_c","d","c_m_r","s"]:U.startsWith("total deaths")&&(tiebreakerOrder=["d","c_m_r","c","c_p_c","s"]);for(var a=U.endsWith("-reverse"),o=0;o<tiebreakerOrder.length;o++){var s=tiebreakerOrder[o],i=e[s]-t[s];if(a&&(i=-i),i>0)return 1;if(i<0)return-1}throw new Error('Bad input for "sortingMethod"')}function X(){D=function e(t,a,o){if(a<o){var s=Math.trunc((a+o)/2);t=e(t,a,s),t=function(e,t,a){if(!(t>=a)){for(var o=Math.trunc((t+a)/2),s=t,i=o+1,n=JSON.parse(JSON.stringify(e)),r=t;s<=o&&i<=a;){var l=e[s],c=e[i],d=F(l,c);d>0?(n[r]=l,r++,s++):d<0?(n[r]=c,r++,i++):(n[r]=l,n[++r]=c,r++,s++,i++)}for(;s<=o;){var l=e[s];n[r]=l,r++,s++}for(;i<=a;){var c=e[i];n[r]=c,r++,i++}return n}}(t=e(t,s+1,o),a,o)}return t}(D,0,D.length-1),B[B.length-1].entries=D}function Y(){y.scrollTop;for(var e,t=g.offsetWidth,a=1;a<g.children.length;a++){var o=g.children[a];if(e=o.state,!J(N.getEntry(e)))if(ce()){o.setAttribute("class","row"),o.style.paddingLeft=t/50+"px",o.style.paddingRight=t/50+"px",t=g.offsetWidth;for(var s=0;s<o.children.length;s++){var i=o.children[s];G(i,a,t),i.style.width=v[s]*(o.offsetWidth-parseFloat(o.style.paddingLeft)-parseFloat(o.style.paddingRight))+"px"}}else o.setAttribute("class","row d-none")}xe()}var V=["total cases","total cases per 100,000 people","total deaths","case mortality rate"];function j(){var e=window.scrollY;g.innerHTML=P,window.scrollTo(0,e);var t=g.offsetWidth,s=t/50+"px";g.style.paddingTop=s,g.style.paddingBottom=s;var i=g.children[0];i.style.paddingLeft=s,i.style.paddingRight=s;for(var n=0,r=0;r<i.children.length;r++)(x=i.children[r]).style.position="absolute",x.style.bottom="0px",x.style.left=.96*m[r]*t+t/50+"px",x.style.width=.96*v[r]*t+"px",G(x,0,t),x.offsetHeight>n&&(n=x.offsetHeight),r>=2&&r<6&&(x.sortingMethod=V[r-2],x.onclick=function(){0==this.state?(U=this.sortingMethod,this.style.textDecoration="underline",this.state=1):1==this.state?(U=this.sortingMethod+"-reverse",this.style.fontStyle="italic",this.state=2):(U=this.sortingMethod,this.style.fontStyle="normal",this.state=1),X(),j(),xe();for(var e=0;e<g.children[0].children.length;e++){var t=g.children[0].children[e];t.sortingMethod!=this.sortingMethod&&(t.style.textDecoration="normal",t.style.fontStyle="normal",t.state=0)}},x.sortingMethod==U?(x.style.textDecoration="underline",x.state=1):x.sortingMethod+"-reverse"==U?(x.style.textDecoration="underline",x.style.fontStyle="italic",x.state=2):x.state=0,x.style.cursor="pointer");i.style.height=n+"px";var l=1;for(r=0;r<D.length;r++){for(var h=D[r],p=0;p<O.length;p++)if(h.s==O[p].s){O[p];break}var f=document.createElement("div");f.setAttribute("class","row"),f.setAttribute("id",h.s),f.state=h.s,f.style.position="relative",f.style.paddingLeft=t/50+"px",f.style.paddingRight=t/50+"px";var y="";for(y+="<div>"+l+"</div>",y+="<div>"+ve(h.s)+"</div>",y+="<div>"+h.c.toLocaleString(o)+"</div>",y+="<div>"+h.c_p_c.toLocaleString(o)+"</div>",y+="<div>"+h.d.toLocaleString(o)+"</div>",y+="<div>"+h.c_m_r.toLocaleString(o)+"%</div>",de(h.s)?y+="<div>✔</div>":y+="<div></div>",f.innerHTML=y,g.appendChild(f),p=0;p<f.children.length;p++){var x;G(x=f.children[p],l,t),x.style.width=v[p]*(.96*t)+"px"}ce()||J(h)||f.setAttribute("class","row d-none"),f.onmouseenter=function(){q(this.id),this.style.backgroundColor="#e8e8e8"},f.style.cursor="pointer",f.onmouseleave=function(){this.style.backgroundColor="transparent"},f.onclick=function(){var e=this,t=e.state;if(T.value!=t){T.value=t;for(var o=0;o<_.length;o++){var s=!1;o%2==1&&(s=_[o].checkbox.checked),ne(_[o],t),s&&(_[o].checkbox.checked=!0,_[o].checkbox.onclick())}}var i=parseInt(c.style.paddingTop)+d.offsetHeight+languageDiv.offsetHeight+parseFloat(languageDiv.style.marginBottom)+u.offsetHeight+parseInt(u.style.marginBottom)/2;setTimeout(function(){window.scrollTo({left:0,top:i,behavior:"smooth"}),a&&e.onmouseleave()},1)},l++}Q()}function G(e,t,a){var o=["red","orange","goldenrod","green","blue","purple","black"];e.style.color=t>=1&&t<=6?o[t-1]:o[6];var s=a/50;e.style.fontSize=s+"px",e.style.fontWeight="bold",e.style.paddingTop=s/8+"px",e.style.paddingBottom=s/8+"px",e.style.paddingRight=s/2+"px"}function J(e){return e.c>=2e3}function K(){var e,t=he(),a=s;if(c.style.padding=.015*a+"px",u.style.marginBottom=.03*a+"px",e=t?.01*a:.02*a,"col-12"==d.className){h.style.fontSize=1.3*e+"px",p.style.fontSize=1.1*e+"px",p.style.borderWidth=e/10+"px",p.style.height=h.offsetHeight+"px",d.style.height=1.8*h.offsetHeight+"px";var o=h.offsetWidth+p.offsetWidth+.1*a;h.style.left=.5*a-o/2+"px",p.style.right=.5*a-o/2+"px"}f.style.fontSize=1.25*e+"px",f.style.width=16*e+"px",f.style.left=.97*a-16*e+"px",languageDiv.style.marginBottom=.01*a+"px",y.style.borderWidth=e/10+"px";var i=y.scrollTop/g.offsetHeight;!function(){var e=g.offsetWidth,t=e/50+"px";g.style.paddingTop=t,g.style.paddingBottom=t;var a=g.children[0];a.style.paddingLeft=t,a.style.paddingRight=t;for(var o=0,s=0;s<a.children.length;s++){var i=a.children[s];G(i,0,e),i.style.position="absolute",i.style.bottom="0px",i.style.left=.96*m[s]*e+e/50+"px",i.style.width=.96*v[s]*e+"px",i.offsetHeight>o&&(o=i.offsetHeight)}a.style.height=o+"px";for(var s=1;s<g.children.length;s++){var n=g.children[s];n.style.paddingLeft=e/50+"px",n.style.paddingRight=e/50+"px";for(var r=0;r<n.children.length;r++){var i=n.children[r];G(i,s,e),i.style.width=v[r]*(.96*e)+"px"}}}(),y.style.marginBottom=t?.0075*a+"px":.015*a+"px",t?(L.style.height=.0168*a+"px",x.style.height=.0168*a+"px"):(L.style.height=.0336*a+"px",x.style.height=.0336*a+"px");var n=L.children[0];t?(n.style.width=.0168*a+"px",n.style.height=.0168*a+"px",L.children[1].style.lineHeight=.0168*a+"px"):(n.style.width=.0336*a+"px",n.style.height=.0336*a+"px",L.children[1].style.lineHeight=.0336*a+"px");var r,l,b=L.children[1];t?(b.style.fontSize=.012*a+"px",b.style.left=.024*a+"px"):(b.style.fontSize=.024*a+"px",b.style.left=.048*a+"px"),r=t?.485*s:.97*s,L.style.width=.95*r,function(){var e,t=s;e=he()?[t/60,t/100,t/100,t/100,t/100,t/125]:[t/30,t/50,t/50,t/50,t/50,t/62.5];for(var a=t/800+"px",o=0;o<k.children.length;o++){var i=k.children[o];i.style.fontSize=e[o]+"px",i.style.paddingBottom=a,0==o&&(i.style.fontWeight="bold")}}(),t&&Z(),l=t?.35625*s-parseFloat(x.style.height)-k.offsetHeight-.0075*a:.5*y.offsetWidth,l=Math.min(l,g.offsetHeight),y.style.height=l+"px",y.scrollTop=i*g.offsetHeight,T.style.fontSize=1.1*e+"px";var S=.485*s;T.style.width=t?.4*S+"px":.8*S+"px",T.style.right=.1*S+"px";var w=T.offsetHeight;C.style.height=w+"px",C.style.marginBottom=.01*a+"px",H.style.fontSize=e+"px",H.style.borderWidth=e/10+"px",H.style.height=w+"px",H.style.width=t?.4*S+"px":.8*S+"px",H.style.left=.1*S+"px",A.style.height=w+"px",A.style.marginBottom=.01*a+"px";for(var M=0;M<_.length;M++){var I=!1;M%2==1&&(I=_[M].checkbox.checked),re(_[M],_[M].state,s-parseInt(c.style.paddingLeft)-parseInt(c.style.paddingRight)),I&&(_[M].checkbox.checked=!0,_[M].checkbox.onclick()),M<_.length-1&&(_[M].style.marginBottom=.03*a+"px")}}function q(e){var t,a=ae(e),i=oe(e),n=a.c-i.c,r=a.c_p_c-i.c_p_c,l=a.d-i.d;switch(be()){case 0:t=[a.s+":"," - Total cases: "+a.c.toLocaleString(o)+" (+"+n.toLocaleString(o)+" from yesterday)","&emsp;&emsp; - Per 100,000 people: "+a.c_p_c.toLocaleString(o)+" (+"+r.toLocaleString(o)+" from yesterday)"," - Total deaths: "+a.d.toLocaleString(o)+" (+"+l.toLocaleString(o)+" from yesterday)"," - Case fatality rate: "+a.c_m_r.toLocaleString(o)+"%",I];break;case 1:t=[ve(a.s)+":"," - Casos totales: "+a.c.toLocaleString(o)+" (+"+n.toLocaleString(o)+" de ayer)","&emsp;&emsp; - Por 100,000 personas: "+a.c_p_c.toLocaleString(o)+" (+"+r.toLocaleString(o)+" de ayer)"," - Muertes totales: "+a.d.toLocaleString(o)+" (+"+l.toLocaleString(o)+" de ayer)"," - Tasa de letalidad: "+a.c_m_r.toLocaleString(o)+"%",I];break;case 2:t=[ve(a.s)+"："," - 累计确诊："+a.c.toLocaleString(o)+"（从昨天+"+n.toLocaleString(o)+"）","&emsp;&emsp; - 每10万人中："+a.c_p_c.toLocaleString(o)+"（从昨天+"+r.toLocaleString(o)+"）"," - 累计死亡："+a.d.toLocaleString(o)+"（从昨天+"+l.toLocaleString(o)+"）"," - 病死率："+a.c_m_r.toLocaleString(o)+"%",I];break;case 3:t=[ve(a.s)+":"," - Nombre total des cas: "+a.c.toLocaleString(o)+" (+"+n.toLocaleString(o)+" d'hier)","&emsp;&emsp; - Pour 100 000 personnes: "+a.c_p_c.toLocaleString(o)+" (+"+r.toLocaleString(o)+" d'hier)"," - Nombre total des décès: "+a.d.toLocaleString(o)+" (+"+l.toLocaleString(o)+" d'hier)"," - Taux de létalité: "+a.c_m_r.toLocaleString(o)+"%",I];break;case 4:t=[ve(a.s)+"："," - 累積診断："+a.c.toLocaleString(o)+"（昨日から+"+n.toLocaleString(o)+"）","&emsp;&emsp; - 10万人あたりの："+a.c_p_c.toLocaleString(o)+"（昨日から+"+r.toLocaleString(o)+"）"," - 累積死亡："+a.d.toLocaleString(o)+"（昨日から+"+l.toLocaleString(o)+"）"," - 致死率："+a.c_m_r.toLocaleString(o)+"%",I]}var c,d=s;c=he()?[d/60,d/100,d/100,d/100,d/100,d/125]:[d/30,d/50,d/50,d/50,d/50,d/62.5],k.innerHTML="";for(var h=d/800+"px",p=0;p<t.length;p++){var u=document.createElement("div");t[p]=t[p].replaceAll("+-","-"),u.innerHTML=t[p],u.style.fontSize=c[p]+"px",u.style.paddingBottom=h,0==p&&(u.style.fontWeight="bold"),k.appendChild(u)}}function Q(){var e=N.cases-R.cases,t=N.cases_per_capita-R.cases_per_capita,a=N.deaths-R.deaths;switch(be()){case 0:i=["Across the country:"," - Total cases: "+N.cases.toLocaleString(o)+" (+"+e.toLocaleString(o)+" from yesterday)","&emsp;&emsp; - Per 100,000 people: "+N.cases_per_capita.toLocaleString(o)+" (+"+t.toLocaleString(o)+" from yesterday)"," - Total deaths: "+N.deaths.toLocaleString(o)+" (+"+a.toLocaleString(o)+" from yesterday)"," - Case fatality rate: "+N.case_mortality_rate.toLocaleString(o)+"%",I];break;case 1:i=["A escala nacional:"," - Casos totales: "+N.cases.toLocaleString(o)+" (+"+e.toLocaleString(o)+" de ayer)","&emsp;&emsp; - Por 100,000 personas: "+N.cases_per_capita.toLocaleString(o)+" (+"+t.toLocaleString(o)+" de ayer)"," - Muertes totales: "+N.deaths.toLocaleString(o)+" (+"+a.toLocaleString(o)+" de ayer)"," - Tasa de letalidad: "+N.case_mortality_rate.toLocaleString(o)+"%",I];break;case 2:var i=["全美国:"," - 累计确诊: "+N.cases.toLocaleString(o)+"（从昨天+"+e.toLocaleString(o)+"）","&emsp;&emsp; - 每10万人中: "+N.cases_per_capita.toLocaleString(o)+"（从昨天+"+t.toLocaleString(o)+"）"," - 累计死亡: "+N.deaths.toLocaleString(o)+"（从昨天+"+a.toLocaleString(o)+"）"," - 病死率: "+N.case_mortality_rate.toLocaleString(o)+"%",I];break;case 3:i=["À l'échelle nationale:"," - Nombre total des cas: "+N.cases.toLocaleString(o)+" (+"+e.toLocaleString(o)+" d'hier)","&emsp;&emsp; - Pour 100 000 personnes: "+N.cases_per_capita.toLocaleString(o)+" (+"+t.toLocaleString(o)+" d'hier)"," - Nombre total des décès: "+N.deaths.toLocaleString(o)+" (+"+a.toLocaleString(o)+" d'hier)"," - Taux de létalité: "+N.case_mortality_rate.toLocaleString(o)+"%",I];break;case 4:i=["全国で："," - 累積診断："+N.cases.toLocaleString(o)+"（昨日から+"+e.toLocaleString(o)+"）","&emsp;&emsp; - 10万人あたりの："+N.cases_per_capita.toLocaleString(o)+"（昨日から+"+t.toLocaleString(o)+"）"," - 累積死亡："+N.deaths.toLocaleString(o)+"（昨日から+"+a.toLocaleString(o)+"）"," - 致死率："+N.case_mortality_rate.toLocaleString(o)+"%",I]}var n,r=s;n=he()?[r/60,r/100,r/100,r/100,r/100,r/125]:[r/30,r/50,r/50,r/50,r/50,r/62.5],k.innerHTML="";for(var l=r/800+"px",c=0;c<i.length;c++){var d=document.createElement("div");i[c]=i[c].replaceAll("+-","-"),d.innerHTML=i[c],d.style.fontSize=n[c]+"px",d.style.paddingBottom=l,0==c&&(d.style.fontWeight="bold"),k.appendChild(d)}}function Z(){if(he()){S.style.paddingLeft=.01*s+"px";for(var e=new Array,t=new Array,o=new Array,i=new Array,n=0;n<S.children.length;n++)"state-data-box"==S.children[n].className&&(e.push(S.children[n].state),t.push(S.children[n].circle.boxLeftMultiplier),o.push(S.children[n].circle.boxTopMultiplier),i.push(S.children[n].movedByUser));var r,l=!1;for(n=0;n<S.children.length;n++)if("../data/us map.png"==S.children[n].getAttribute("src")){r=S.children[n],l=!0;break}S.innerHTML="",l||((r=document.createElement("img")).src="../data/us map.png",r.setAttribute("class","img-fluid"),r.setAttribute("id","usMap"),w=r),r.width=.475*s,r.height=.35625*s,r.left=.01*s+"px",S.appendChild(r),S.style.height=.35625*s+"px";var c=M.split("\n"),d=59375e-8*s;for(n=0;n<c.length;n++)if(""!=c[n]){var h=c[n].split(" ");(u=document.createElement("span")).setAttribute("class","circle"),u.style.position="absolute",u.style.left=h[0]*d+.01*s+"px",u.style.top=h[1]*d+"px",u.style.width=2*h[2]*d+"px",u.style.height=2*h[2]*d+"px",u.radius=h[2]*d,u.style.borderRadius="50%",p=(p=h[3]).replaceAll("-"," "),u.state=p,de(p)?u.style.backgroundColor="red":u.style.backgroundColor="rgb(140, 140, 140)",u.isPinned=!1,a?u.ontouchend=function(){if(!this.isPinned){var e=this.stateDataBox;if(null==this.stateDataBox){this.stateDataBox=te(this),e=this.stateDataBox,S.appendChild(e);for(var t=e.children[0].offsetWidth,a=1;a<e.children.length;a++)e.children[a].offsetWidth>t&&(t=e.children[a].offsetWidth);var o=w.width/800*9;e.style.width=t+4*o+"px"}else S.appendChild(e);ee(this,e)}this.isPinned=!this.isPinned,this.isPinned?"red"==this.style.backgroundColor?this.style.backgroundColor="rgb(150, 0, 0)":(this.style.backgroundColor="rgb(140, 140, 140)")&&(this.style.backgroundColor="rgb(75, 75, 75)"):"rgb(150, 0, 0)"==this.style.backgroundColor?this.style.backgroundColor="red":"rgb(75, 75, 75)"==this.style.backgroundColor&&(this.style.backgroundColor="rgb(140, 140, 140)"),this.isPinned||S.removeChild(this.stateDataBox)}:(u.onmouseenter=function(){if(!this.isPinned){var e=this.stateDataBox;if(null==this.stateDataBox){this.stateDataBox=te(this),e=this.stateDataBox,S.appendChild(e);for(var t=e.children[0].offsetWidth,a=1;a<e.children.length;a++)e.children[a].offsetWidth>t&&(t=e.children[a].offsetWidth);var o=w.width/800*9;e.style.width=t+4*o+"px"}else S.appendChild(e);ee(this,e)}},u.onmouseleave=function(){this.isPinned||(S.removeChild(this.stateDataBox),this.stateDataBox.movedByUser=!1)},u.onclick=function(){this.isPinned=!this.isPinned,this.isPinned?"red"==this.style.backgroundColor?this.style.backgroundColor="rgb(150, 0, 0)":(this.style.backgroundColor="rgb(140, 140, 140)")&&(this.style.backgroundColor="rgb(75, 75, 75)"):"rgb(150, 0, 0)"==this.style.backgroundColor?this.style.backgroundColor="red":"rgb(75, 75, 75)"==this.style.backgroundColor&&(this.style.backgroundColor="rgb(140, 140, 140)")}),document.getElementById("colB").appendChild(u)}for(;e.length>0;){var p=e.shift();for(n=0;n<S.children.length;n++){var u;if("circle"==(u=S.children[n]).className&&u.state==p){a?u.ontouchend():(u.onmouseenter(),u.click());var f=u.stateDataBox;if(i.shift()){var y=t.shift(),g=o.shift(),m=y*S.offsetWidth;m+f.offsetWidth<S.offsetWidth?u.boxLeftMultiplier=y:(m=S.offsetWidth-f.offsetWidth,u.boxLeftMultiplier=m/S.offsetWidth),f.style.left=m+"px",u.boxTopMultiplier=g,u.stateDataBox.style.top=g*S.offsetHeight+"px",f.movedByUser=!0}else t.shift(),o.shift();break}}}S.activeBox=null,a||(S.onmousemove=function(e){if(e.pageX>=this.offsetLeft&&e.pageX<this.offsetLeft+parseFloat(S.style.paddingLeft)&&this.onmouseleave(),null!=this.activeBox){var t=this.activeBox,a=t.circle;e.preventDefault(),t.doNotRedirect=!0,t.movedByUser=!0;var o=e.pageX-t.deltaX-S.offsetLeft;o<parseFloat(S.style.paddingLeft)?o=parseFloat(S.style.paddingLeft):o+t.offsetWidth>S.offsetWidth&&(o=S.offsetWidth-t.offsetWidth);var s=e.pageY-t.deltaY-S.offsetTop;s<0?s=0:s+t.offsetHeight>S.offsetHeight&&(s=S.offsetHeight-t.offsetHeight),t.style.left=o+"px",t.style.top=s+"px",a.boxLeftMultiplier=parseFloat(t.style.left)/S.offsetWidth,a.boxTopMultiplier=parseFloat(t.style.top)/S.offsetHeight}},S.onmouseleave=function(){if(this.activeBox){var e=this.activeBox;e.active=!1,e.deltaX=null,e.deltaY=null,S.activeBox=null}})}}function ee(e,t){var a=e.radius+w.height/150,o=t.offsetWidth,s=t.offsetHeight,i=parseFloat(e.style.left)+e.radius,n=parseFloat(e.style.top)+e.radius;i+o+a<S.offsetWidth?(t.style.left=i+a+"px",e.boxLeftMultiplier=(i+a)/S.offsetWidth):(t.style.left=i-o-a+"px",e.boxLeftMultiplier=(i-o-a)/S.offsetWidth),n+s+a<S.offsetHeight?(t.style.top=n+a+"px",e.boxTopMultiplier=(n+a)/S.offsetHeight):(t.style.top=n-s-a+"px",e.boxTopMultiplier=(n-s-a)/S.offsetHeight)}function te(e){var t=document.createElement("div");t.setAttribute("class","state-data-box"),t.state=e.state,t.circle=e,t.style.position="absolute";var s=w.width/800,i=112*s;t.style.height=i+"px";var n,r=ae(e.state),l=oe(e.state),h=r.c-l.c,p=r.c_p_c-l.c_p_c,f=r.d-l.d;switch(be()){case 0:n=[e.state," - Total cases: "+r.c.toLocaleString(o)+" (+"+h.toLocaleString(o)+")","&emsp;&emsp; - Per 100,000 people: "+r.c_p_c.toLocaleString(o)+" (+"+p.toLocaleString(o)+")"," - Total deaths: "+r.d.toLocaleString(o)+" (+"+f.toLocaleString(o)+")"," - Case fatality rate: "+r.c_m_r.toLocaleString(o)+"%"];break;case 1:n=[ve(e.state)," - Casos totales: "+r.c.toLocaleString(o)+" (+"+h.toLocaleString(o)+")","&emsp;&emsp; - Por 100,000 personas: "+r.c_p_c.toLocaleString(o)+" (+"+p.toLocaleString(o)+")"," - Muertes totales: "+r.d.toLocaleString(o)+" (+"+f.toLocaleString(o)+")"," - Tasa de letalidad: "+r.c_m_r.toLocaleString(o)+"%"];break;case 2:n=[ve(e.state)," - 累计确诊: "+r.c.toLocaleString(o)+"（+"+h.toLocaleString(o)+"）","&emsp;&emsp; - 每10万人中: "+r.c_p_c.toLocaleString(o)+"（+"+p.toLocaleString(o)+"）"," - 累计死亡: "+r.d.toLocaleString(o)+"（+"+f.toLocaleString(o)+"）"," - 病死率: "+r.c_m_r.toLocaleString(o)+"%"];break;case 3:n=[ve(e.state)+":"," - Nombre total des cas: "+r.c.toLocaleString(o)+" (+"+h.toLocaleString(o)+")","&emsp;&emsp; - Pour 100 000 personnes: "+r.c_p_c.toLocaleString(o)+" (+"+p.toLocaleString(o)+")"," - Nombre total des décès: "+r.d.toLocaleString(o)+" (+"+f.toLocaleString(o)+")"," - Taux de létalité: "+r.c_m_r.toLocaleString(o)+"%"];break;case 4:n=[ve(r.s)+"："," - 累積診断："+r.c.toLocaleString(o)+"（+"+h.toLocaleString(o)+"）","&emsp;&emsp; - 10万人あたりの："+r.c_p_c.toLocaleString(o)+"（+"+p.toLocaleString(o)+"）"," - 累積死亡："+r.d.toLocaleString(o)+"（+"+f.toLocaleString(o)+"）"," - 病死率："+r.c_m_r.toLocaleString(o)+"%"]}for(var y=4*s,g=0;g<n.length;g++){n[g]=n[g].replaceAll("+-","-");var m=document.createElement("div");m.style.left=9*s+"px",m.innerHTML=n[g],0==g?(m.style.fontSize=18*s+"px",m.style.top=y+"px",m.style.fontWeight="bold",y+=25*s):(m.style.fontSize=12*s+"px",m.style.top=y+"px",y+=18*s),m.style.whiteSpace="nowrap",t.appendChild(m)}for(g=0;g<t.children.length;g++)t.children[g].style.position="absolute";return t.style.backgroundColor="lightyellow",t.style.borderStyle="solid",t.style.borderWidth=3*s+"px",t.style.borderColor="black",t.style.overflowX="hidden",t.style.cursor="pointer",t.movedByUser=!1,a?t.ontouchend=function(){var e=this.state;if(T.value!=e){T.value=e;for(var t=0;t<_.length;t++)ne(_[t],e)}var a=parseInt(c.style.paddingTop)+d.offsetHeight+languageDiv.offsetHeight+parseFloat(languageDiv.style.marginBottom)+u.offsetHeight+parseInt(u.style.marginBottom)/2;setTimeout(function(){window.scrollTo({left:0,top:a,behavior:"smooth"})},1)}:(t.deltaX=null,t.deltaY=null,t.onmousedown=function(e){if(this.active=!0,S.activeBox=this,e.target==this)this.deltaX=e.offsetX,this.deltaY=e.offsetY;else for(var t=0;t<this.children.length;t++)e.target==this.children[t]&&(this.deltaX=e.offsetX+parseFloat(this.children[t].style.left),this.deltaY=e.offsetY+parseFloat(this.children[t].style.top));for(t=0;t<S.children.length;t++)if(S.children[t]==this){t<S.children.length-1?(S.removeChild(this),S.appendChild(this),this.doNotRedirect=!0):this.doNotRedirect=!1;break}},t.onmouseup=function(e){if(this.active=!1,this.deltaX=null,this.deltaY=null,S.activeBox=null,!this.doNotRedirect){var t=this.state;if(T.value!=t){T.value=t;for(var a=0;a<_.length;a++){var o=!1;a%2==1&&(o=_[a].checkbox.checked),ne(_[a],t),o&&(_[a].checkbox.checked=!0,_[a].checkbox.onclick())}}var s=parseInt(c.style.paddingTop)+d.offsetHeight+languageDiv.offsetHeight+parseFloat(languageDiv.style.marginBottom)+u.offsetHeight+parseInt(u.style.marginBottom)/2;setTimeout(function(){window.scrollTo({left:0,top:s,behavior:"smooth"})},1)}}),t}function ae(e){return N.getEntry(e)}function oe(e){for(var t=0;t<O.length;t++)if(O[t].s==e)return O[t];return null}function se(){for(var e=T.value,t=0;t<_.length;t++){var a=!1;t%2==1&&(a=_[t].checkbox.checked),ne(_[t],e),a&&(_[t].checkbox.checked=!0,_[t].checkbox.onclick())}}function ie(){if("USA"!=T.value){T.value="USA";for(var e=0;e<_.length;e++){var t=!1;e%2==1&&(t=_[e].checkbox.checked),ne(_[e],"USA"),t&&(_[e].checkbox.checked=!0,_[e].checkbox.onclick())}}}function ne(e,t){re(e,t,s-parseInt(c.style.paddingLeft)-parseInt(c.style.paddingRight))}function re(e,t,s){if(null==t&&null==e.state){if(null==e.state)throw new Error("state must be defined");t=e.state}if(null==e.field&&-1!=le(e.id)&&(e.field=le(e.id)),null==e.field)throw new Error("provided div must be a chart");if(null==e.canvas||e.field%2!=1||null==e.canvas2||e.canvas.offsetWidth!=s||e.state!=t){e.innerHTML="";var i=e.style;e.style.width=s+"px";var n=.375*s;e.style.height=n+"px",null==e.toXCoordinate&&(e.toXCoordinate=function(e){var t=parseFloat(this.style.width);return.9*t/(this.xAxisRange-1)*(e-1)+.07*t},e.toX=function(e){var t=parseFloat(this.style.width);return e>=.07*t&&e<=.97*t?(this.xAxisRange-1)/(.9*t)*(e-.07*t)+1:e>=.06*t&&e<=.07*t?1:e>=.97*t&&e<=.98*t?this.xAxisRange:-1},e.toYCoordinate=function(e){var t=parseFloat(this.style.height);return-.8*t/this.yAxisRange*e+.85*t}),i.borderStyle="solid",i.borderWidth=s/1e3+"px";var r=e.xAxisRange;if(e.state!=t){r=e.field%2==0?B.length:B.length-1,e.state=t,e.months=new Array(r),e.days=new Array(r),e.years=new Array(r),e.numbers=new Array(r),e.sevenDayMovingAverages,e.field%2==1&&(e.sevenDayMovingAverages=new Array(r));var l=0,d=["cases","cases","cases_per_capita","cases_per_capita","deaths","deaths","case_mortality_rate"],h=["c","c","c_p_c","c_p_c","d","d","c_m_r"];if(e.field%2==0)for(var p=0;p<B.length;p++){var u=B[p];if(e.months[p]=u.month,e.days[p]=u.day,e.years[p]=u.year,"USA"==e.state)e.numbers[p]=u[d[e.field]];else{var f=u.getEntry(e.state);e.numbers[p]=f[h[e.field]]}e.numbers[p]>l&&(l=e.numbers[p])}else for(p=1;p<B.length;p++){u=B[p];var y=B[p-1];if(e.months[p-1]=u.month,e.days[p-1]=u.day,e.years[p-1]=u.year,"USA"==e.state)e.numbers[p-1]=u[d[e.field]]-y[d[e.field]];else{f=u.getEntry(e.state);var g=y.getEntry(e.state);e.numbers[p-1]=f[h[e.field]]-g[h[e.field]]}e.numbers[p-1]>l&&(l=e.numbers[p-1])}l>=1?(e.exponent=parseInt(Math.log10(l)),e.multiplier=l/Math.pow(10,e.exponent)):(e.exponent=0,e.multiplier=1),6!=e.field?e.multiplier<1.44375&&e.exponent>0&&(e.multiplier*=10,e.exponent--):e.multiplier<1.44375&&e.exponent>-1&&(e.multiplier*=10,e.exponent--),e.xAxisRange=r,l>=1?e.multiplier<1.03125*parseInt(e.multiplier)?e.yAxisRange=parseInt(e.multiplier)*Math.pow(10,e.exponent):e.yAxisRange=parseInt(e.multiplier+1)*Math.pow(10,e.exponent):e.yAxisRange=1}for(var m="",v="",x=0;x<r;x++){var b=e.numbers[x];if(6!=e.field&&x==r-1)if(e.field%2==0){if(e.numbers[x]-e.numbers[x-1]<=0)continue}else if(e.numbers[x]<=0)continue;if(m+=(C=e.toXCoordinate(x+1))+","+(T=e.toYCoordinate(b))+" ",e.field%2==1&&x>=6){var L=0;for(p=x-6;p<=x;p++)L+=e.numbers[p];e.sevenDayMovingAverages[x]=L/7,x>=7&&(v+=C+","+e.toYCoordinate(e.sevenDayMovingAverages[x])+" ")}}var k=SVG().addTo("#"+e.id).size(s,n);k.node.setAttribute("id","svg"+e.field),e.svg=k.node,e.polyline1=k.polyline(m),e.polyline1.fill("none"),e.polyline1.stroke({color:["deepskyblue","deepskyblue","mediumpurple","mediumpurple","red","red","darkorange"][e.field],width:s/400,linecap:"round",linejoin:"round"}),e.field%2==1&&(e.polyline2=k.polyline(v),e.polyline2.fill("none"),e.polyline2.stroke({color:[null,"blue",null,"#6600ff",null,"#aa0000",null][e.field],width:s/400,linecap:"round",linejoin:"round"}),e.polyline2.remove()),e.cover=document.createElement("div"),e.cover.style.position="absolute",e.cover.style.top=.85*n+"px",e.cover.style.left=.01*s+"px",e.cover.style.width=.98*s+"px",e.cover.style.height=.14*n+"px",e.cover.style.textAlign="bottom",e.appendChild(e.cover),e.xAxis=document.createElement("div"),e.xAxis.style.position="absolute",e.xAxis.style.top=.85*n-n/400+"px",e.xAxis.style.left=.06*s-n/400+"px",e.xAxis.style.width=.92*s+n/400+"px",e.xAxis.style.height=n/200+"px",e.xAxis.style.backgroundColor="black",e.appendChild(e.xAxis),e.yAxis=document.createElement("div"),e.yAxis.style.position="absolute",e.yAxis.style.top=.025*n+"px",e.yAxis.style.left=.06*s-n/400+"px",e.yAxis.style.width=n/200+"px",e.yAxis.style.height=.825*n+"px",e.yAxis.style.backgroundColor="black",e.appendChild(e.yAxis);var w=parseInt(e.xAxisRange/30+1),M=e.toXCoordinate(2)-e.toXCoordinate(1);for(e.ticks=new Array,e.labels=new Array,x=0;x<e.xAxisRange;x++)if(w>=2){if(x%w==0){var C=e.toXCoordinate(x+1),T=.85*n,A=document.createElement("div");switch(be()){case 0:case 2:case 4:A.innerHTML=e.months[x]+"/"+e.days[x];break;case 1:case 3:A.innerHTML=e.days[x]+"/"+e.months[x]}A.style.position="absolute",A.style.width=M*w+"px",A.style.textAlign="center",(W=parseInt(M*w/3))>.015*s&&(W=.015*s),A.style.fontSize=W+"px",A.style.left=C-M*w/2+"px",A.style.top=.865*n+"px",e.appendChild(A),e.labels.push(A),(H=document.createElement("div")).style.position="absolute",H.style.left=C-n/600+"px",H.style.top=T-.01*n+"px",H.style.width=n/300+"px",H.style.height=.02*n+"px",H.style.backgroundColor="black",e.appendChild(H),e.ticks.push(H)}}else{var H;C=e.toXCoordinate(x+1),T=.85*n,(A=document.createElement("div")).innerHTML=e.months[x]+"/"+e.days[x],A.style.position="absolute",A.style.width=M*w+"px",A.style.textAlign="center",(W=parseInt(M*w/3))>.015*s&&(W=.015*s),A.style.fontSize=W+"px",A.style.left=C-M*w/2+"px",A.style.top=.865*n+"px",e.appendChild(A),e.labels.push(A),(H=document.createElement("div")).style.position="absolute",H.style.left=C-n/600+"px",H.style.top=T-.01*n+"px",H.style.width=.004*n+"px",H.style.height=n/300+"px",H.style.backgroundColor="black",e.appendChild(H),e.ticks.push(H)}var _,I,E=e.yAxisRange;for(C=.06*s;E>0;){T=e.toYCoordinate(E);var N=document.createElement("div");N.style.position="absolute",N.style.left=C-.005*s+"px",N.style.top=T-n/600+"px",N.style.width=.01*s+"px",N.style.height=n/300+"px",N.style.backgroundColor="black",e.appendChild(N),e.ticks.push(N);var D=document.createElement("div");6!=e.field?D.innerHTML=E.toLocaleString(o):D.innerHTML=E.toLocaleString(o)+"%",e.appendChild(D),e.labels.push(D);var W=14*n/600;D.style.fontSize=W+"px",D.style.textAlign="right",D.style.position="absolute",D.style.lineHeight=W+"px",D.style.top=T-W/2+"px",D.style.width=.053*s+"px",E-=Math.pow(10,e.exponent)}if(2==e.field||3==e.field||6==e.field||e.exponent>0){var R,O;E=e.yAxisRange;var P=0;for(e.yAxisRange/Math.pow(10,e.exponent)<5?(R=2*Math.pow(10,e.exponent-1),O=5):(R=5*Math.pow(10,e.exponent-1),O=2);E>0;)if(0!=P){T=e.toYCoordinate(E);var U=document.createElement("div");U.style.position="absolute",U.style.left=C-.003*s+"px",U.style.top=T-n/600+"px",U.style.width=.006*s+"px",U.style.height=n/300+"px",U.style.backgroundColor="black",e.appendChild(U),e.ticks.push(U);var z=document.createElement("div");6!=e.field?z.innerHTML=E.toLocaleString(o):z.innerHTML=E.toLocaleString(o)+"%",e.appendChild(z),e.labels.push(z),W=10*n/600,z.style.fontSize=W+"px",z.style.lineHeight=W+"px",z.style.textAlign="right",z.style.position="absolute",z.style.top=T-W/2+"px",z.style.width=.053*s+"px",E-=R,P--}else E-=R,P=O-1}if(e.field%2==1){var F=document.createElement("div");F.innerHTML='<label for="display7DayMovingAverage-'+e.field+'" id="display7DayMovingAverageLabel-"'+e.field+'><input id="display7DayMovingAverage-'+e.field+'" type="checkbox"></label>';var X=F.children[0].children[0];X.type="checkbox",X.setAttribute("id","display7DayMovingAverage-"+e.field),X.style.width=1.4*.03*n+"px",X.style.height=1.4*.03*n+"px",X.chart=e,X.style.position="absolute",X.style.bottom="0px",X.onclick=function(){this.checked?(this.chart.polyline2.addTo("#svg"+this.chart.field),this.chart.polyline1.opacity(.32)):(this.chart.polyline2.remove(),this.chart.polyline1.opacity(1))};var Y=F.children[0];Y.style.marginBottom="0px";var V=document.createElement("span");switch(be()){case 0:V.innerHTML="Display 7 day moving average";break;case 1:V.innerHTML="Mostrar la media móvil de 7 días";break;case 2:V.innerHTML="显示7天移动平均线";break;case 3:V.innerHTML="Afficher la moyenne mobile sur 7 jours";break;case 4:V.innerHTML="7日間の移動平均を表示"}V.style.whiteSpace="nowrap",V.style.fontSize=.03*n+"px",V.style.marginBottom="0px",V.style.position="absolute",V.style.left=.06*n+"px",V.style.lineHeight=.042*n+"px",V.style.bottom="0px",Y.appendChild(V),e.display7DayMovingAverageLabel=Y,F.appendChild(Y),F.style.position="absolute",F.style.bottom=.025*n+"px",e.appendChild(F);var j=.06*n+V.offsetWidth;F.style.width=j+"px",F.style.left=.5*s-j/2+"px",e.checkbox=X}switch(e.titleNode=document.createElement("div"),e.titleNode.setAttribute("class","title"),be()){case 0:_=[": total cases",": new cases",": total cases per 100,000 people",": new cases per 100,000 people",": total deaths",": new deaths",": case fatality rate"];break;case 1:_=[": casos totales",": nuevos casos",": casos totales por 100,000 personas",": nuevos casos por 100,000 personas",": muertes totales",": nuevos muertes",": tasa de letalidad"];break;case 2:_=["：累计确诊","：新确诊","：每10万人中的累计确诊","：每10万人中的新确诊","：累计死亡","：新死亡","：病死率"];break;case 3:_=[": nombre total des cas",": nouveaux cas",": nombre total des cas pour 100 000 personnes",": nouveaux cas pour 100 000 personnes",": nombre total des décès",": nouveaux décès",": taux de létalité"];break;case 4:_=["：累積診断","：新たに診断された","：10万人あたりの累積診断","：10万人あたり新たに診断","：累積死亡","新たに死亡された","：致死率"]}switch(e.titleNode.innerHTML=ve(e.state)+_[e.field],"none"!=getComputedStyle(S).display?e.titleNode.style.fontSize=n/24+"px":e.titleNode.style.fontSize=n/16+"px",e.titleNode.style.textAlign="center",e.titleNode.style.position="absolute",e.titleNode.style.top="0px",e.titleNode.style.width="100%",e.appendChild(e.titleNode),e.resetTitle=function(){this.titleNode.innerHTML=ve(e.state)+_[this.field]},be()){case 0:I=["{s}: {n} total cases as of {m}/{d}/{y}","{s}: {n} new cases on {m}/{d}/{y}","{s}: {n} cases per 100,000 people on {m}/{d}/{y}","{s}: {n} new cases per 100,000 people on {m}/{d}/{y}","{s}: {n} total deaths on {m}/{d}/{y}","{s}: {n} new deaths on {m}/{d}/{y}","{s}: {n}% case fatality rate as of {m}/{d}/{y}"];break;case 1:I=["{s}: {n} casos a partir de {d}/{m}/{y}","{s}: {n} nuevos casos en {d}/{m}/{y}","{s}: {n} casos por 100,000 personas a partir de {d}/{m}/{y}","{s}: {n} nuevos casos por 100,000 personas en {d}/{m}/{y}","{s}: {n} muertes a partir de {d}/{m}/{y}","{s}: {n} nuevos muertes en {d}/{m}/{y}","{s}: {n}% tasa de letalidad a partir de {d}/{m}/{y}"];break;case 2:I=["{s}:截至{y}/{m}/{d}，共有{n}个确诊","{s}:{y}/{m}/{d}，有了{n}个新确诊","{s}:截至{y}/{m}/{d}，每10万人中共有了{n}个确诊","{s}:{y}/{m}/{d}，每10万人中有了{n}个新确诊","{s}:截至{y}/{m}/{d}，共有{n}个死亡","{s}:{y}/{m}/{d}，有了{n}个新死亡","{s}:截至{y}/{m}/{d}，病死率是{n}%"];break;case 3:I=["{s}: {n} cas au {d}/{m}/{y}","{s}: {n} nouveaux cas au {d}/{m}/{y}","{s}: {n} cas pour 100000 personnes au {d}/{m}/{y}","{s}: {n} nuevos casos por 100,000 personas en {d}/{m}/{y}","{s}: {n} décès au {d}/{m}/{y}","{s}: {n} nouveaux décès au {d}/{m}/{y}","{s}: {n}% taux de létalité au {d}/{m}/{y}"];break;case 4:I=["{s}：{y}/{m}/{d}の時点で、{n}個の診断があります","{s}：{y}/{m}/{d}に{n}の新しい診断があります","{s}：{y}/{m}/{d}の時点で、10万人あたり{n}個の診断があります","{s}：{y}/{m}/{d}に10万人あたり{n}の新しい診断があります","{s}：{y}/{m}/{d}の時点で、{n}個の死亡があります","{s}：{y}/{m}/{d}に{n}の新しい死亡があります","{s}：{y}/{m}/{d}の時点で、致死率は{n}％です"]}e.titlePlaceholder=I[e.field],e.xOfMouse=-1,a||null!=e.onmousemove?a&&null==e.ontouchmove&&(e.lastXCoordinate=null,e.lastYCoordinate=null,e.ontouchstart=function(t){e.lastXCoordinate=t.pageX-parseFloat(c.style.paddingLeft),e.lastYCoordiante=t.pageY},e.ontouchmove=function(e){var t=e.pageX-parseFloat(c.style.paddingLeft),a=e.pageY,s=a-this.lastYCoordiante,i=t-this.lastXCoordinate;Math.abs(s/i)<1&&e.touches.length<2&&(e.preventDefault(),e.stopPropagation()),e.lastXCoordinate=t,e.lastYCoordiante=a;var n=this.toX(t);if((n=parseInt(n+.5))<=0||n>this.xAxisRange)return this.resetTitle(),void(this.xOfMouse=-1);if(this.xOfMouse!=n){6!=this.field&&n==this.xAxisRange&&(this.field%2==0?this.numbers[n-1]-this.numbers[n-2]<=0&&n--:this.numbers[n-1]<=0&&n--);var r=this.numbers,l=(this.field,"");if(r=this.numbers,l=(l=(l=(l=(l=(l=this.titlePlaceholder).replaceAll("{s}",ve(this.state))).replaceAll("{y}",this.years[n-1])).replaceAll("{m}",this.months[n-1])).replaceAll("{d}",this.days[n-1])).replaceAll("{n}",r[n-1].toLocaleString(o)),this.field%2==1&&this.checkbox.checked&&n>=7){var d=this.sevenDayMovingAverages;switch(be()){case 0:l+="<br>7 day moving average: ";break;case 1:l+="<br>Media móvil de 7 días: ";break;case 2:l+="<br>7天移动平均：";break;case 3:l+="<br>Moyenne mobile sur 7 jours: ";break;case 4:l+="<br>7日間の移動平均："}if(3==this.field){var h=d[n-1].toFixed(1);h==parseInt(h)&&(h=parseInt(h)),l+=h.toLocaleString(o)}else l+=parseInt(d[n-1]+.5).toLocaleString(o)}this.titleNode.innerHTML=l,this.xOfMouse=n}},e.ontouchend=function(){this.resetTitle(),this.lastXCoordinate=null,this.lastYCoordiante=null}):(e.onmousemove=function(e){var t=e.pageX-parseFloat(c.style.paddingLeft),a=this.toX(t);if((a=parseInt(a+.5))<=0||a>this.xAxisRange)return this.resetTitle(),void(this.xOfMouse=-1);if(this.xOfMouse!=a){6!=this.field&&a==this.xAxisRange&&(this.field%2==0?this.numbers[a-1]-this.numbers[a-2]<=0&&a--:this.numbers[a-1]<=0&&a--);var s=this.numbers;if(finalHTML=this.titlePlaceholder,finalHTML=finalHTML.replaceAll("{s}",ve(this.state)),finalHTML=finalHTML.replaceAll("{y}",this.years[a-1]),finalHTML=finalHTML.replaceAll("{m}",this.months[a-1]),finalHTML=finalHTML.replaceAll("{d}",this.days[a-1]),finalHTML=finalHTML.replaceAll("{n}",s[a-1].toLocaleString(o)),this.field%2==1&&this.checkbox.checked&&a>=7){var i=this.sevenDayMovingAverages;switch(be()){case 0:finalHTML+="<br>7 day moving average: ";break;case 1:finalHTML+="<br>Media móvil de 7 días: ";break;case 2:finalHTML+="<br>7天移动平均：";break;case 3:finalHTML+="<br>Moyenne mobile sur 7 jours: ";break;case 4:finalHTML+="<br>7日間の移動平均："}if(3==this.field){var n=i[a-1].toFixed(1);n==parseInt(n)&&(n=parseInt(n)),finalHTML+=n.toLocaleString(o)}else finalHTML+=parseInt(i[a-1]+.5).toLocaleString(o)}this.titleNode.innerHTML=finalHTML,this.xOfMouse=a}},e.onmouseleave=function(){this.resetTitle()})}}function le(e){return"totalCasesChart"==e?0:"newCasesChart"==e?1:"totalCasesPer100000PeopleChart"==e?2:"newCasesPer100000PeopleChart"==e?3:"totalDeathsChart"==e?4:"newDeathsChart"==e?5:"deathRateChart"==e?6:-1}function ce(){return b.checked}function de(e){var t=N.getEntry(e),a=R.getEntry(e);return t.c-a.c>0||t.d-a.d>0}function he(){return"none"!=window.getComputedStyle(S).display}function pe(){var e;o=f.value;var t=W.hour+":";switch(W.minute>=10?t+=W.minute:t+="0"+W.minute,be()){case 0:document.title="Coronavirus tracker",p.innerHTML="OK",x.children[0].children[1].innerHTML="Display states/territories with less than 2,000 cases.",H.innerHTML="Reset charts",e=W.month+"/"+W.day+"/"+W.year,h.innerHTML="An update from "+e+", "+t+" ET is currently in effect.",I="Last updated on "+e+", "+t+" ET. Source of data: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>. NOT FOR COMMERICAL USE.";break;case 1:document.title="Rastreador de coronavirus",p.innerHTML="Bueno",x.children[0].children[1].innerHTML="Mostrar estados/territorios con menos de 2,000 casos.",H.innerHTML="Restablecer gráficos",e=W.month+"/"+W.day+"/"+W.year,h.innerHTML="Una actualización de "+e+", "+t+" hora del este actualmente está activa.",I="Ultima actualización en "+e+", "+t+" hora del este. Fuente de datos: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>. NO ES PARA USO COMERCIAL.";break;case 2:document.title="冠状病毒追踪器",p.innerHTML="好的",x.children[0].children[1].innerHTML="显示少于2,000个累计确诊的州/领土。",H.innerHTML="重置图表",e=W.year+"/"+W.month+"/"+W.day,h.innerHTML="一个从"+e+"，"+t+"东部时间的更新正在生效。",I="最后更新时间："+e+"，"+t+" 东部时间。 数据来源: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>。 不用于商业用途。";break;case 3:document.title="Traqueur de coronavirus",p.innerHTML="D'accord",x.children[0].children[1].innerHTML="Afficher les états/territoires avec moins de 2 000 cas.",H.innerHTML="Réinitialiser les graphiques",e=W.month+"/"+W.day+"/"+W.year,h.innerHTML="Une mise à jour à partir de "+e+", "+t+" heure de l'Est est actuellement en vigueur.",I="Dernière mise à jour à "+e+", "+t+" heure de l'Est. Source de données: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>. PAS POUR UN USAGE COMMERCIAL.";break;case 4:document.title="コロナウイルストラッカー",p.innerHTML="よし",x.children[0].children[1].innerHTML="2,000件未満の州/地域を表示します。",H.innerHTML="チャートをリセット",e=W.year+"/"+W.month+"/"+W.day,h.innerHTML="現在、東部時の"+e+"、"+t+"からの更新が有効です。",I="最終更新日は"+e+"、東部時の"+t+"です。データのソース:<a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>。商用目的ではありません。"}for(var a=0;a<ue.length;a++){var i=ue[a],n=T.children[a];n.innerHTML=ve(i),n.setAttribute("value",i)}for(a=0;a<_.length;a++){i=_[a].state;var r=!1;a%2==1&&(r=_[a].checkbox.checked),_[a].state=null,ne(_[a],i),r&&(_[a].checkbox.checked=!0,_[a].checkbox.onclick())}var l="../data-display-header-"+o+".html";$.get(l,function(e){P=e,j(),Z();for(var t=0;t<_.length;t++){var a=!1;t%2==1&&(a=_[t].checkbox.checked),re(_[t],_[t].state,s-parseInt(c.style.paddingLeft)-parseInt(c.style.paddingRight)),a&&(_[t].checkbox.checked=!0,_[t].checkbox.onclick()),t<_.length-1&&(_[t].style.marginBottom=.03*s+"px")}xe()})}var ue=["USA","Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","District of Columbia","Florida","Georgia","Guam","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Northern Mariana Islands","Ohio","Oklahoma","Oregon","Pennsylvania","Puerto Rico","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","U.S. Virgin Islands","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],fe=["EE.UU","Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Distrito de Columbia","Florida","Georgia","Guam","Hawái","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Luisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Misisipí","Misuri","Montana","Nebraska","Nevada","Nueva Hampshire","Nueva Jersey","Nuevo México","Nueva York","Carolina del Norte","Dakota del Norte","Islas Marianas del Norte","Ohio","Oklahoma","Oregón","Pensilvania","Puerto Rico","Rhode Island","Carolina del Sur","Dakota del Sur","Tennessee","Texas","Islas Vírgenes de EE.UU","Utah","Vermont","Virginia","Washington","Virginia del Oeste","Wisconsin","Wyoming"],ye=["美国","阿拉巴马州","阿拉斯加州","亚利桑那州","阿肯色州","加利福尼亚州","科罗拉多州","康涅狄格州","特拉华州","哥伦比亚特区","佛罗里达州","乔治亚州","关岛","夏威夷","爱达荷州","伊利诺伊州","印第安纳州","爱荷华州","堪萨斯州","肯塔基州","路易斯安那州","缅因州","马里兰州","马萨诸塞州","密歇根州","明尼苏达州","密西西比州","密苏里州","蒙大拿州","内布拉斯加州","内华达州","新罕布什尔州","新泽西州","新墨西哥州","纽约州","北卡罗来纳州","北达科他州","北马里亚纳群岛","俄亥俄州","俄克拉荷马州","俄勒冈州","宾夕法尼亚州","波多黎各","罗德岛","南卡罗来纳州","南达科他州","田纳西州","得克萨斯州","美属维尔京群岛","犹他州","佛蒙特","弗吉尼亚州","华盛顿州","西弗吉尼亚州","威斯康星州","怀俄明州"],ge=["États-Unis","Alabama","Alaska","Arizona","Arkansas","Californie","Colorado","Connecticut","Delaware","District de Colombie","Floride","Géorgie","Guam","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiane","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","Nouveau Mexique","New York","Caroline du Nord","Dakota du Nord","Îles Mariannes du Nord","Ohio","Oklahoma","Oregon","Pennsylvanie","Porto Rico","Rhode Island","Caroline du Sud","Dakota du Sud","Tennessee","Texas","Îles Vierges américaines","Utah","Vermont","Virginie","Washington","Virginie-Occidentale","Wisconsin","Wyoming"],me=["米国","アラバマ","アラスカ","アリゾナ","アーカンザス","カリフォルニア","コロラド","コネチカット","デラウェア","コロンビア特別区","フロリダ","ジョージア","グアム","ハワイ","アイダホ","イリノイ","インディアナ","アイオワ","カンザス","ケンタッキー","ルイジアナ","メイン","メリーランド","マサチューセッツ"," ミシガン","ミネソタ","ミシシッピ","ミズーリ","モンタナ","ネブラスカ","ネバダ","ニューハンプシャー","ニュージャージー","ニューメキシコ","ニューヨーク","ノースカロライナ","ノースダコタ","北マリアナ諸島","オハイオ","オクラホマ","オレゴン","ペンシルベニア","プエルトリコ","ロードアイランド"," サウスカロライナ","サウスダコタ","テネシー","テキサス","米国バージン諸島","ユタ","バーモント","バージニア","ワシントン","ウェストバージニア","ウィスコンシン","ワイオミング"];function ve(e){if("en-US"==o)return e;for(var t=0;t<ue.length;t++)if(e==ue[t])switch(be()){case 1:return fe[t];case 2:return ye[t];case 3:return ge[t];case 4:return me[t]}}function xe(){var e={};e.language=o,e.sortingMethod=U,e.displayInsignificantEntries=ce();for(var t=document.cookie.split(";"),a=0;a<t.length;a++)document.cookie=t[a]+"= ;expires=Thu, 01 Jan 1970 00:00:00 GMT";document.cookie="userSettings="+JSON.stringify(e)+";",document.cookie="expires="+(Date.now()+18144e3)+";"}function be(){switch(o){case"en-US":return 0;case"es-MX":return 1;case"zh-CN":return 2;case"fr-FR":return 3;case"ja-JP":return 4;default:return-1}}!function(){t=document.getElementsByTagName("body")[0],a=!1;var e=!1;try{var B=document.cookie.indexOf("{"),D=document.cookie.indexOf("}"),R=JSON.parse(document.cookie.substring(B,D+1));o=R.language||"en-US",U=R.sortingMethod||"total cases",e=R.displayInsignificantEntries||!1}catch(e){o="en-US",U="total cases",xe()}switch(be()){case 0:document.title="Coronavirus tracker";break;case 1:document.title="Rastreador de coronavirus";break;case 2:document.title="冠状病毒追踪器";break;case 3:document.title="Traqueur de coronavirus";break;case 4:document.title="コロナウイルストラッカー"}for(var O=document.getElementById("select0").options,F=0;F<O.length;F++)if((le=O[F]).value==o){document.getElementById("select0").selectedIndex=F;break}(navigator.userAgent.match(/Android/i)||navigator.userAgent.match(/webOS/i)||navigator.userAgent.match(/iPhone/i)||navigator.userAgent.match(/iPad/i)||navigator.userAgent.match(/iPod/i)||navigator.userAgent.match(/BlackBerry/i)||navigator.userAgent.match(/Windows Phone/i))&&(a=!0),-1!=navigator.userAgent.indexOf("Win")?t.style.fontFamily="Calibri":t.style.fontFamily="Times New Roman",document.getElementById("base").className="container-fluid d-block",t.style.overflowY="scroll",window.displayNationalStats=Q,window.toggleDisplayInsignificantEntries=Y,window.readjustSizes=K,l=!1,window.select0Change=pe,window.select2Change=se,window.resetCharts=ie;var X=function(){l&&s!=c.offsetWidth&&(s=c.offsetWidth,K(),i=null)};window.onresize=function(){null!=i&&clearTimeout(i),i=setTimeout(X,250)};var V=function(){l&&($.get("../data/last-updated.txt",function(e){if(E!=e){var t=E.split(" "),a=e.split(" ");(parseInt(t[0])<=parseInt(a[0])||parseInt(t[1])<=parseInt(a[1])||parseInt(t[2])<=parseInt(a[2])||parseInt(t[3])<=parseInt(a[3])||parseInt(t[4])<=parseInt(a[4]))&&$.get("../data/data.json",function(e){var t=e.data,a=t[t.length-1];N.year!=a.year||N.month!=a.month||N.day!=a.day||N.hour!=a.hour||N.minute!=a.minute?setTimeout(function(){z(e.data);var t,a=W;switch(be()){case 0:t=a.month+"/"+a.day+"/"+a.year;break;case 1:case 3:t=a.day+"/"+a.month+"/"+a.year;break;case 2:case 4:t=a.year+"/"+a.month+"/"+a.day}var o=a.hour+":";switch(a.minute>=10?o+=a.minute:o+="0"+a.minute,be()){case 0:I="Last updated on "+t+", "+o+" ET. Source of data: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>. NOT FOR COMMERICAL USE.";break;case 1:I="Ultima actualización en "+t+", "+o+" hora del este. Fuente de datos: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>. NO ES PARA USO COMERCIAL.";break;case 2:I="最后更新时间："+t+"，"+o+" 东部时间。 数据来源： <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>。 不用于商业用途。";break;case 3:I="Dernière mise à jour à "+t+", "+o+" heure de l'Est. Source de données: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>. PAS POUR UN USAGE COMMERCIAL.";break;case 4:I="最終更新日は"+t+"、東部時の"+o+"です。データのソース:<a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>。商用目的ではありません。"}var i=y.scrollTop;j(),y.scrollTop=i,Z();for(var n=0;n<_.length;n++){var l=_[n].state,c=!1;n%2==1&&(c=_[n].checkbox.checked),_[n].state=null,ne(_[n],l),c&&(_[n].checkbox.checked=!0,_[n].checkbox.onclick())}E=N.year+" "+N.month+" "+N.day+" "+N.hour+" "+N.minute,i=window.scrollY;var u=!0;switch("col-12 d-none"==d.className&&(d.className="col-12",u=!1),be()){case 0:h.innerHTML="An update from "+t+", "+o+" ET is currently in effect.";break;case 1:h.innerHTML="Una actualización de "+t+", "+o+" hora del este actualmente está activa.";break;case 2:h.innerHTML="一个从"+t+"，"+o+"东部时间的更新正在生效。";break;case 3:h.innerHTML="Une mise à jour à partir de "+t+", "+o+" heure de l'Est est actuellement en vigueur.";break;case 4:h.innerHTML="現在、東部時の"+t+"、"+o+"からの更新が有効です。"}var f,g=s;f=he()?.01*g:.02*g,h.style.fontSize=1.3*f+"px",p.style.fontSize=1.1*f+"px",p.style.borderWidth=f/10+"px",p.style.height=h.offsetHeight+"px",d.style.height=1.8*h.offsetHeight+"px";var m=h.offsetWidth+p.offsetWidth+.1*g;h.style.left=.5*g-m/2+"px",p.style.right=.5*g-m/2+"px",u||(scrollTo(0,i+d.offsetHeight),setTimeout(function(){clearTimeout(r),r=null},100))},1):r=setTimeout(V,3e4)})}}),n=Date.now(),r=null)};switch(n=Date.now(),t.onmousemove=function(){if(null==r){var e=Date.now()-n;r=e<3e4?setTimeout(V,3e4-e):setTimeout(V,0)}},t.onscroll=function(){t.onmousemove()},document.addEventListener("visibilitychange",function(){"visible"==document.visibilityState&&t.onmousemove()}),t.onmousemove(),c=document.getElementById("base"),s=c.offsetWidth,d=document.getElementById("update"),h=document.getElementById("updateNotification"),(p=document.getElementById("dismissUpdateButton")).onclick=function(){d.className="col-12 d-none"},be()){case 0:p.innerHTML="OK";break;case 1:p.innerHTML="Bueno";break;case 2:p.innerHTML="好的";break;case 3:p.innerHTML="D'accord";break;case 4:p.innerHTML="よし"}u=document.getElementById("row1");var G,J,q=s,ee="none"!=window.getComputedStyle(document.getElementById("colB")).display;G=ee?.01*q:.02*q,c.style.padding=.015*q+"px",u.style.marginBottom=.03*q+"px",languageDiv=document.getElementById("languageDiv"),(f=document.getElementById("select0")).style.position="relative",J=ee?.485*s:.97*s,f.style.fontSize=1.25*G+"px",f.style.width=16*G+"px",f.style.left=.97*q-16*G+"px",languageDiv.style.marginBottom=.01*q+"px",y=document.getElementById("rowA1"),g=document.getElementById("dataDisplay"),y.style.borderWidth=G/10+"px",y.style.marginBottom=ee?.0075*q+"px":.015*q+"px",b=document.getElementById("displayInsignificantEntries"),L=document.getElementById("displayInsignificantEntriesLabel"),x=document.getElementById("rowA2"),ee?(L.style.height=.0168*q+"px",x.style.height=.0168*q+"px"):(L.style.height=.0336*q+"px",x.style.height=.0336*q+"px");var te=L.children[0];ee?(te.style.width=.0168*q+"px",te.style.height=.0168*q+"px",L.children[1].style.lineHeight=.0168*q+"px"):(te.style.width=.0336*q+"px",te.style.height=.0336*q+"px",L.children[1].style.lineHeight=.0336*q+"px");var ae=L.children[1];switch(ee?(ae.style.fontSize=.012*q+"px",ae.style.left=.024*q+"px"):(ae.style.fontSize=.024*q+"px",ae.style.left=.048*q+"px"),be()){case 0:ae.innerHTML="Display states/territories with less than 2,000 cases.";break;case 1:ae.innerHTML="Mostrar estados/territorios con menos de 2,000 casos.";break;case 2:ae.innerHTML="显示少于2,000个累计确诊的州/领土。";break;case 3:ae.innerHTML="Afficher les états/territoires avec moins de 2 000 cas.";break;case 4:ae.innerHTML="2,000件未満の州/地域を表示します。"}switch(L.style.width=.95*J,k=document.getElementById("rowA3"),S=document.getElementById("colB"),w=document.getElementById("usMap"),C=document.getElementById("select2Div"),T=document.getElementById("select2"),A=document.getElementById("resetChartsButtonDiv"),H=document.getElementById("resetChartsButton"),be()){case 0:H.innerHTML="Reset charts";break;case 1:H.innerHTML="Restablecer gráficos";break;case 2:H.innerHTML="重置图表";break;case 3:H.innerHTML="Réinitialiser les graphiques";break;case 4:H.innerHTML="チャートをリセット"}T.style.fontSize=1.1*G+"px",T.style.width=ee?.4*C.offsetWidth+"px":.8*C.offsetWidth+"px",C.style.height=T.offsetHeight+"px",H.style.fontSize=G+"px",H.style.borderWidth=G/10+"px",H.style.height=T.offsetHeight+"px",H.style.width=ee?.4*A.offsetWidth+"px":.8*A.offsetWidth+"px",A.style.height=H.offsetHeight+"px",_=[document.getElementById("totalCasesChart"),document.getElementById("newCasesChart"),document.getElementById("totalCasesPer100000PeopleChart"),document.getElementById("newCasesPer100000PeopleChart"),document.getElementById("totalDeathsChart"),document.getElementById("newDeathsChart"),document.getElementById("deathRateChart")];var oe=["USA","Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","District of Columbia","Florida","Georgia","Guam","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Northern Mariana Islands","Ohio","Oklahoma","Oregon","Pennsylvania","Puerto Rico","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","U.S. Virgin Islands","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];for(F=0;F<oe.length;F++){var le,ce=oe[F];(le=document.createElement("option")).innerHTML=ve(ce),le.setAttribute("value",ce),T.appendChild(le)}$.ajaxSetup({cache:!1}),$.get("../data/data.json",function(t){z(t.data),E=N.year+" "+N.month+" "+N.day+" "+N.hour+" "+N.minute;var a="../data-display-header-"+o+".html";$.get(a,function(t){P=t;var a,o=W;switch(be()){case 0:a=o.month+"/"+o.day+"/"+o.year;break;case 1:case 3:a=o.day+"/"+o.month+"/"+o.year;break;case 2:case 4:a=o.year+"/"+o.month+"/"+o.day}var i=o.hour+":";switch(o.minute>=10?i+=o.minute:i+="0"+o.minute,be()){case 0:I="Last updated on "+a+", "+i+" ET. Source of data: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>. NOT FOR COMMERICAL USE.";break;case 1:I="Ultima actualización en "+a+", "+i+" hora del este. Fuente de datos: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>. NO ES PARA USO COMERCIAL.";break;case 2:I="最后更新时间："+a+"，"+i+" 东部时间。 数据来源: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>。 不用于商业用途。";break;case 3:I="Dernière mise à jour à "+a+", "+i+" heure de l'Est. Source de données: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>. PAS POUR UN USAGE COMMERCIAL.";break;case 4:I="最終更新日は"+a+"、東部時の"+i+"です。データのソース:<a target='_blank' href='http://worldometers.info/coronavirus/country/us'>worldometers.info/coronavirus/country/us</a>。商用目的ではありません。"}m=[0,.075,.2825,.4225,.615,.765,.89],v=[.075,.2075,.14,.1925,.15,.125,.105],e&&(b.checked=!0),j(),$.get("../data/state circle data.txt",function(e){var t;M=e,Z(),t=ee?w.height-x.offsetHeight-k.offsetHeight-.0075*q:.5*y.offsetWidth,t=Math.min(t,g.offsetHeight),y.style.height=t+"px",T.style.fontSize=1.1*G+"px";var a=.485*s;T.style.width=ee?.4*a+"px":.8*a+"px",T.style.right=.1*a+"px";var o=T.offsetHeight;C.style.height=o+"px",C.style.marginBottom=.01*q+"px",H.style.fontSize=G+"px",H.style.borderWidth=G/10+"px",H.style.height=o+"px",H.style.width=ee?.4*a+"px":.8*a+"px",H.style.left=.1*a+"px",A.style.height=o+"px",A.style.marginBottom=.01*q+"px";for(var i=0;i<_.length;i++)re(_[i],"USA",q-parseInt(c.style.paddingLeft)-parseInt(c.style.paddingRight)),i<_.length-1&&(_[i].style.marginBottom=.03*q+"px");l=!0})})})}()});
+
+( function( global ) {
+	
+	$( document ).ready( function() {
+		function Calendar( year, month, day, hour, minute ) {
+			this.year = year;
+			this.month = month;
+			this.day = day;
+			this.hour = hour;
+			this.minute = minute;
+		}
+		var body, isMobile, language, baseWidth;
+		var resize, timeOfLastCheckForUpdate, checkForUpdates, finishedSetup;
+		var base, update, updateNotification, dismissUpdateButton;
+		var row1, select0;
+		var rowA1, dataDisplay, lefts, widths, rowA2, displayInsignificantEntriesCheckbox, displayInsignificantEntriesLabel, rowA3;
+		var colB, usMap, stateCircleData, select2Div, select2, resetChartsButtonDiv, resetChartsButton, charts;
+		var lastUpdatedOn, timestamp;
+		
+		var allData, dataFromToday, entriesFromToday, calendarFromToday, dataFromYesterday, entriesFromYesterday, dataDisplayHeaderHTML, 
+		sortingMethod;
+
+		function init() {
+			body = document.getElementsByTagName( "body" )[0];
+			isMobile = false;
+			var displayInsignificantEntries = false;
+			try {
+				var indexOfLeftBrace = document.cookie.indexOf( "{" );
+				var indexOfRightBrace = document.cookie.indexOf( "}" );
+				var userSetting = JSON.parse( document.cookie.substring( indexOfLeftBrace, indexOfRightBrace + 1 ) );
+				language = userSetting.language || "en-US";
+				sortingMethod = userSetting.sortingMethod || "total cases";
+				displayInsignificantEntries = userSetting.displayInsignificantEntries || false;
+			}
+			catch ( error ) {
+				language = "en-US";
+				sortingMethod = "total cases";
+				updateCookies();
+			}
+			
+			switch ( languageIndex() ) {
+				case 0: {
+					document.title = "Coronavirus tracker";
+					break;
+				}
+				case 1: {
+					document.title = "Rastreador de coronavirus";
+					break;
+				}
+				case 2: {
+					document.title = "冠状病毒追踪器";
+					break;
+				}
+				case 3: {
+					document.title = "Traqueur de coronavirus";
+					break;
+				}
+				case 4: {
+					document.title = "コロナウイルストラッカー";
+					break;
+				}
+			}
+			var options = document.getElementById( "select0" ).options;
+			for ( var i = 0; i < options.length; i++ ) {
+				var option = options[i];
+			    if ( option.value == language ) {
+				      document.getElementById( "select0" ).selectedIndex = i;
+				      break;
+			    }
+			}
+			
+			if ( navigator.userAgent.match( /Android/i ) || navigator.userAgent.match( /webOS/i ) 
+				|| navigator.userAgent.match( /iPhone/i ) || navigator.userAgent.match( /iPad/i ) 
+				|| navigator.userAgent.match( /iPod/i ) || navigator.userAgent.match( /BlackBerry/i ) 
+				|| navigator.userAgent.match( /Windows Phone/i ) ) {
+				isMobile = true;
+			}
+			
+			if ( navigator.userAgent.indexOf( "Win" ) != -1 ) {
+				body.style.fontFamily = "Calibri";
+			}
+			else {
+				body.style.fontFamily = "Times New Roman";
+			}
+			
+			
+			document.getElementById( "base" ).className = "container-fluid d-block";
+			body.style.overflowY = "scroll";
+			
+			window.displayNationalStats = displayNationalStats;
+			window.toggleDisplayInsignificantEntries = toggleDisplayInsignificantEntries;
+			window.readjustSizes = readjustSizes;
+			finishedSetup = false;
+			window.select0Change = select0Change;
+			window.select2Change = select2Change;
+			window.resetCharts = resetCharts;
+			
+			var doResize = function() {
+				if ( finishedSetup ) {
+					if ( baseWidth != base.offsetWidth ) {
+						baseWidth = base.offsetWidth;
+						readjustSizes();
+						
+						resize = null;
+					}
+				}
+			};
+			window.onresize = function() {
+				if ( resize != null ) {
+					clearTimeout( resize );
+				}
+				
+				resize = setTimeout( doResize, 250 );
+			};
+			
+			var doCheckForUpdates = function() {
+				if ( finishedSetup ) {
+					$.get( "../data/last-updated.txt", function( responseText ) {
+						if ( timestamp != responseText ) {
+							var data1 = timestamp.split( " " );
+							var data2 = responseText.split( " " );
+							// have updated because data.json would've already been updated for now while last-updated.txt hasn't.
+							if ( parseInt( data1[0] ) <= parseInt( data2[0] ) || parseInt( data1[1] ) <= parseInt( data2[1] ) 
+								|| parseInt( data1[2] ) <= parseInt( data2[2] ) || parseInt( data1[3] ) <= parseInt( data2[3] )
+								|| parseInt( data1[4] ) <= parseInt( data2[4] ) ) {
+								// updated. For example, timestamp is 12:00, while time in last-updated.txt is 12:30.
+								$.get( "../data/data.json", function( data ) {
+									var newAllData = data.data;
+									var newDataFromToday = newAllData[newAllData.length - 1];
+									// data.
+									if ( dataFromToday.year == newDataFromToday.year 
+										&& dataFromToday.month == newDataFromToday.month 
+										&& dataFromToday.day == newDataFromToday.day 
+										&& dataFromToday.hour == newDataFromToday.hour 
+										&& dataFromToday.minute == newDataFromToday.minute ) {
+											checkForUpdates = setTimeout( doCheckForUpdates, 30000 );
+											return;
+									}	
+
+									setTimeout( function() {
+										processData( data.data );
+
+										var calendar = calendarFromToday;
+										var date;
+										switch ( languageIndex() ) {
+											case 0: {
+												date = calendar.month + "/" + calendar.day + "/" + calendar.year;
+												break;
+											}
+											case 1:
+											case 3: {
+												date = calendar.day + "/" + calendar.month + "/" + calendar.year;
+												break;
+											}
+											case 2:
+											case 4: {
+												date = calendar.year + "/" + calendar.month + "/" + calendar.day;
+												break;
+											}
+										}
+
+										var time = calendar.hour + ":";
+										if ( calendar.minute >= 10 ) {
+											time += calendar.minute;
+										}
+										else {
+											time += "0" + calendar.minute;
+										}
+										
+										switch ( languageIndex() ) {
+											case 0: {
+												lastUpdatedOn = "Last updated on " + date + ", " + time + " ET. Source of data: "
+													+ "<a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+													+ "worldometers.info/coronavirus/country/us</a>. NOT FOR COMMERICAL USE.";
+												break;
+											}
+											case 1: {
+												lastUpdatedOn = "Ultima actualización en " + date + ", " + time + " hora del este. Fuente "
+													+ "de datos: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+													+ "worldometers.info/coronavirus/country/us</a>. NO ES PARA USO COMERCIAL.";
+												break;
+											}
+											case 2: {
+												lastUpdatedOn = "最后更新时间：" + date + "，" + time + " 东部时间。 数据来源： "
+													+ "<a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+													+ "worldometers.info/coronavirus/country/us</a>。 不用于商业用途。";
+												break;
+											}
+											case 3: {
+												lastUpdatedOn = "Dernière mise à jour à " + date + ", " + time + " heure de l'Est. "
+													+ "Source de données: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+													+ "worldometers.info/coronavirus/country/us</a>. PAS POUR UN USAGE COMMERCIAL.";
+												break;
+											}
+											case 4: {
+												lastUpdatedOn = "最終更新日は" + date + "、東部時の" + time + "です。データのソース:"
+													+ "<a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+													+ "worldometers.info/coronavirus/country/us</a>。商用目的ではありません。";
+												break;
+											}
+										}
+
+										var scrollY = rowA1.scrollTop;
+										refreshDataDisplay();
+										rowA1.scrollTop = scrollY;
+										
+										
+										loadMap();
+										for ( var i = 0; i < charts.length; i++ ) {
+											var state = charts[i].state;
+											var checked = false;
+											if ( i % 2 == 1 ) {
+												checked = charts[i].checkbox.checked;
+											}
+											charts[i].state = null;	// Force reload of data
+											updateChart( charts[i], state );
+											if ( checked ) {
+												charts[i].checkbox.checked = true;
+												charts[i].checkbox.onclick();
+											}
+										}
+										timestamp = dataFromToday.year + " " + dataFromToday.month + " " 
+											+ dataFromToday.day + " " + dataFromToday.hour + " " + dataFromToday.minute;
+										
+										scrollY = window.scrollY;	// Get scroll position before update is added
+										var updateAlreadyVisible = true;
+										if ( update.className == "col-12 d-none" ) {
+											update.className = "col-12";
+											updateAlreadyVisible = false;
+										}
+										
+										switch ( languageIndex() ) {
+											case 0: {
+												updateNotification.innerHTML = "An update from " + date + ", " + time + " ET is currently "
+													+ "in effect.";
+												break;
+											}
+											case 1: {
+												updateNotification.innerHTML = "Una actualización de " + date + ", " + time + 
+													" hora del este actualmente está activa.";
+												break;
+											}
+											case 2: {
+												updateNotification.innerHTML = "一个从" + date + "，" + time + "东部时间的更新正在生效。";
+												break;
+											}
+											case 3: {
+												updateNotification.innerHTML = "Une mise à jour à partir de " + date + ", " + time + 
+													" heure de l'Est est actuellement en vigueur.";
+												break;
+											}
+											case 4: {
+												updateNotification.innerHTML = "現在、東部時の" + date + "、" + time + "からの更新が有効です。";
+												break;
+											}
+										}
+										var w = baseWidth;
+										var isUSMapDisplaying = isUSMapVisible();
+										var fontSize;
+										if ( isUSMapDisplaying ) {
+											fontSize = 0.01 * w;
+										}
+										else {
+											fontSize = 0.02 * w;
+										}
+										updateNotification.style.fontSize = 1.3 * fontSize + "px";
+										dismissUpdateButton.style.fontSize = 1.1 * fontSize + "px";
+										dismissUpdateButton.style.borderWidth = fontSize / 10 + "px";
+										dismissUpdateButton.style.height = updateNotification.offsetHeight + "px";
+										update.style.height = 1.8 * updateNotification.offsetHeight + "px";
+										var combinedWidth = updateNotification.offsetWidth + dismissUpdateButton.offsetWidth 
+											+ 0.1 * w;
+										updateNotification.style.left = 0.5 * w - combinedWidth / 2 + "px";
+										dismissUpdateButton.style.right = 0.5 * w - combinedWidth / 2 + "px";
+										// visible
+										if ( !updateAlreadyVisible ) {
+											scrollTo( 0, scrollY + update.offsetHeight );
+											setTimeout( function() {
+												clearTimeout( checkForUpdates );
+												checkForUpdates = null;
+											}, 100 );
+										}
+									}, 1 );
+
+
+									
+								} );
+							}	
+						}
+					});
+					timeOfLastCheckForUpdate = Date.now();
+					checkForUpdates = null;
+				}
+			};
+			
+			timeOfLastCheckForUpdate = Date.now(); 
+			body.onmousemove = function() {
+				if ( checkForUpdates == null ) {
+					var timeElapsed = Date.now() - timeOfLastCheckForUpdate;
+					if ( timeElapsed < 30000 ) {
+						checkForUpdates = setTimeout( doCheckForUpdates, 30000 - timeElapsed );
+					}
+					else {
+						checkForUpdates = setTimeout( doCheckForUpdates, 0 );	
+					}
+				}
+			};
+			body.onscroll = function() {
+				body.onmousemove();
+			};
+			document.addEventListener( "visibilitychange", function() {
+				if ( document.visibilityState == "visible" ) {
+					body.onmousemove();
+				}
+			});
+			body.onmousemove();
+			
+			base = document.getElementById( "base" );
+			baseWidth = base.offsetWidth;
+			update = document.getElementById( "update" );
+			updateNotification = document.getElementById( "updateNotification" );
+			dismissUpdateButton = document.getElementById( "dismissUpdateButton" );
+			dismissUpdateButton.onclick = function() {
+				update.className = "col-12 d-none";
+			};
+			switch ( languageIndex() ) {
+				case 0: {
+					dismissUpdateButton.innerHTML = "OK";
+					break;
+				}
+				case 1: {
+					dismissUpdateButton.innerHTML = "Bueno";
+					break;
+				}
+				case 2: {
+					dismissUpdateButton.innerHTML = "好的";
+					break;
+				}
+				case 3: {
+					dismissUpdateButton.innerHTML = "D'accord";
+					break;
+				}
+				case 4: {
+					dismissUpdateButton.innerHTML = "よし";
+					break;
+				}
+			}
+			
+			row1 = document.getElementById( "row1" );
+			var w = baseWidth;
+			var fontSize;
+			var isUSMapDisplaying = window.getComputedStyle( document.getElementById( "colB" ) ).display != "none";
+			if ( isUSMapDisplaying ) {
+				fontSize = 0.01 * w;
+			}
+			else {
+				fontSize = 0.02 * w;
+			}
+			base.style.padding = 0.015 * w + "px";
+			row1.style.marginBottom = 0.03 * w + "px";
+			
+			languageDiv = document.getElementById( "languageDiv" );
+			select0 = document.getElementById( "select0" );
+			select0.style.position = "relative";
+			
+			var colAWidth;
+			if ( isUSMapDisplaying ) {
+				colAWidth = 0.485 * baseWidth;
+			}
+			else {
+				colAWidth = 0.97 * baseWidth;
+			}
+			
+			select0.style.fontSize = 1.25 * fontSize + "px";
+			select0.style.width = 16 * fontSize + "px";
+			select0.style.left = 0.97 * w - 16 * fontSize + "px";
+			languageDiv.style.marginBottom = 0.01 * w + "px";
+			
+			rowA1 = document.getElementById( "rowA1" );
+			dataDisplay = document.getElementById( "dataDisplay" );
+			rowA1.style.borderWidth = fontSize / 10 + "px";
+			if ( isUSMapDisplaying ) {
+				rowA1.style.marginBottom = 0.0075 * w + "px";
+			}
+			else {
+				rowA1.style.marginBottom = 0.015 * w + "px";
+			}
+			
+			displayInsignificantEntriesCheckbox = document.getElementById( "displayInsignificantEntries" );
+			displayInsignificantEntriesLabel = document.getElementById( "displayInsignificantEntriesLabel" );
+			rowA2 = document.getElementById( "rowA2" );
+			if ( isUSMapDisplaying ) {
+				displayInsignificantEntriesLabel.style.height = 1.4 * 0.012 * w + "px";
+				rowA2.style.height = 1.4 * 0.012 * w + "px";
+			}
+			else {
+				displayInsignificantEntriesLabel.style.height = 1.4 * 0.024 * w + "px";
+				rowA2.style.height = 1.4 * 0.024 * w + "px";
+			}
+			var checkbox = displayInsignificantEntriesLabel.children[0];
+			if ( isUSMapDisplaying ) {
+				checkbox.style.width = 1.4 * 0.012 * w + "px";
+				checkbox.style.height = 1.4 * 0.012 * w + "px";
+				displayInsignificantEntriesLabel.children[1].style.lineHeight = 1.4 * 0.012 * w + "px";	// span
+			}
+			else {
+				checkbox.style.width = 1.4 * 0.024 * w + "px";
+				checkbox.style.height = 1.4 * 0.024 * w + "px";
+				displayInsignificantEntriesLabel.children[1].style.lineHeight = 1.4 * 0.024 * w + "px";	// span
+			}
+			
+			var span = displayInsignificantEntriesLabel.children[1];
+			if ( isUSMapDisplaying ) {
+				span.style.fontSize = 0.012 * w + "px";
+				span.style.left = 0.024 * w + "px";
+			}
+			else {
+				span.style.fontSize = 0.024 * w + "px";
+				span.style.left = 0.048 * w + "px";
+			}
+			switch ( languageIndex() ) {
+				case 0: {
+					span.innerHTML = "Display states/territories with less than 2,000 cases.";
+					break;
+				}
+				case 1: {
+					span.innerHTML = "Mostrar estados/territorios con menos de 2,000 casos.";
+					break;
+				}
+				case 2: {
+					span.innerHTML = "显示少于2,000个累计确诊的州/领土。";
+					break;
+				}
+				case 3: {
+					span.innerHTML = "Afficher les états/territoires avec moins de 2 000 cas.";
+					break;
+				}
+				case 4: {
+					span.innerHTML = "2,000件未満の州/地域を表示します。";
+					break;
+				}
+			}
+			displayInsignificantEntriesLabel.style.width = 0.95 * colAWidth;
+			
+			rowA3 = document.getElementById( "rowA3" );
+			colB = document.getElementById( "colB" );
+			usMap = document.getElementById( "usMap" );
+			
+			select2Div = document.getElementById( "select2Div" );
+			select2 = document.getElementById( "select2" );
+			resetChartsButtonDiv = document.getElementById( "resetChartsButtonDiv" );
+			resetChartsButton = document.getElementById( "resetChartsButton" );
+			switch ( languageIndex() ) {
+				case 0: {
+					resetChartsButton.innerHTML = "Reset charts";
+					break;
+				}
+				case 1: {
+					resetChartsButton.innerHTML = "Restablecer gráficos";
+					break;
+				}
+				case 2: {
+					resetChartsButton.innerHTML = "重置图表";
+					break;
+				}
+				case 3: {
+					resetChartsButton.innerHTML = "Réinitialiser les graphiques";
+					break;
+				}
+				case 4: {
+					resetChartsButton.innerHTML = "チャートをリセット";
+					break;
+				}
+			}
+			select2.style.fontSize = 1.1 * fontSize + "px";
+			if ( isUSMapDisplaying ) {
+				select2.style.width = 0.4 * select2Div.offsetWidth + "px";
+			}
+			else {
+				select2.style.width = 0.8 * select2Div.offsetWidth + "px";
+				
+			}
+			select2Div.style.height = select2.offsetHeight + "px";
+			
+			resetChartsButton.style.fontSize = fontSize + "px";
+			resetChartsButton.style.borderWidth = fontSize / 10 + "px";
+			resetChartsButton.style.height = select2.offsetHeight + "px";
+			if ( isUSMapDisplaying ) {
+				resetChartsButton.style.width = 0.4 * resetChartsButtonDiv.offsetWidth + "px";
+			}
+			else {
+				resetChartsButton.style.width = 0.8 * resetChartsButtonDiv.offsetWidth + "px";
+				
+			}
+			resetChartsButtonDiv.style.height = resetChartsButton.offsetHeight + "px";
+
+			charts = [ 
+				document.getElementById( "totalCasesChart" ), document.getElementById( "newCasesChart" ), 
+				document.getElementById( "totalCasesPer100000PeopleChart" ), document.getElementById( "newCasesPer100000PeopleChart" ),
+				document.getElementById( "totalDeathsChart" ), document.getElementById( "newDeathsChart" ),
+				document.getElementById( "deathRateChart" )
+			];
+			
+			var states = [
+				"USA", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
+				"Connecticut", "Delaware", "District of Columbia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho",
+				"Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts",
+				"Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
+				"New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands",
+				"Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina",
+				"South Dakota", "Tennessee", "Texas", "U.S. Virgin Islands", "Utah", "Vermont", "Virginia",
+				"Washington", "West Virginia", "Wisconsin", "Wyoming"
+			];
+			var finalHTML = "";
+			for ( var i = 0; i < states.length; i++ ) {
+				var state = states[i];
+				var option = document.createElement( "option" );
+				option.innerHTML = translate( state );
+				option.setAttribute( "value", state );
+				select2.appendChild( option );
+			}
+			
+			$.ajaxSetup( { cache: false } );	// Disable cache
+			
+			$.get( "../data/data.json", function( data ) {
+				processData( data.data );
+				// timestamp is bound to data.
+				timestamp = dataFromToday.year + " " + dataFromToday.month + " " 
+					+ dataFromToday.day + " " + dataFromToday.hour + " " + dataFromToday.minute;
+				
+				var dataDisplayHeaderFile = "../data-display-header-" + language + ".html";
+				$.get( dataDisplayHeaderFile, function( responseText ) {
+					dataDisplayHeaderHTML = responseText;
+					
+					var calendar = calendarFromToday;
+					var date;
+					switch ( languageIndex() ) {
+						case 0: {
+							date = calendar.month + "/" + calendar.day + "/" + calendar.year;
+							break;
+						}
+						case 1:
+						case 3: {
+							date = calendar.day + "/" + calendar.month + "/" + calendar.year;
+							break;
+						}
+						case 2: 
+						case 4: {
+							date = calendar.year + "/" + calendar.month + "/" + calendar.day;
+							break;
+						}
+					}
+
+					var time = calendar.hour + ":";
+					if ( calendar.minute >= 10 ) {
+						time += calendar.minute;
+					}
+					else {
+						time += "0" + calendar.minute;
+					}
+					
+					switch ( languageIndex() ) {
+						case 0: {
+							lastUpdatedOn = "Last updated on " + date + ", " + time + " ET. Source of data: "
+								+ "<a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+								+ "worldometers.info/coronavirus/country/us</a>. NOT FOR COMMERICAL USE.";
+							break;
+						}
+						case 1: {
+							lastUpdatedOn = "Ultima actualización en " + date + ", " + time + " hora del este. Fuente "
+								+ "de datos: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+								+ "worldometers.info/coronavirus/country/us</a>. NO ES PARA USO COMERCIAL.";
+							break;
+						}
+						case 2: {
+							lastUpdatedOn = "最后更新时间：" + date + "，" + time + " 东部时间。 数据来源: "
+								+ "<a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+								+ "worldometers.info/coronavirus/country/us</a>。 不用于商业用途。";
+							break;
+						}
+						case 3: {
+							lastUpdatedOn = "Dernière mise à jour à " + date + ", " + time + " heure de l'Est. "
+								+ "Source de données: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+								+ "worldometers.info/coronavirus/country/us</a>. PAS POUR UN USAGE COMMERCIAL.";
+							break;
+						}
+						case 4: {
+							lastUpdatedOn = "最終更新日は" + date + "、東部時の" + time + "です。データのソース:"
+								+ "<a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+								+ "worldometers.info/coronavirus/country/us</a>。商用目的ではありません。";
+							break;
+						}
+					}
+					lefts =  [    0,  0.075, 0.2825, 0.4225, 0.615, 0.765,  0.89];
+					
+					widths = [0.075, 0.2075,   0.14, 0.1925,  0.15, 0.125, 0.105];
+					if ( displayInsignificantEntries ) {
+						displayInsignificantEntriesCheckbox.checked = true;
+					}
+					refreshDataDisplay();	// Includes readjustSizes() for dataDisplay and rowA3
+					
+					$.get( "../data/state circle data.txt", function( responseText ) {
+						stateCircleData = responseText;
+						loadMap();
+						var h;
+						if ( !isUSMapDisplaying ) {
+							h = rowA1.offsetWidth * 0.5;
+						}
+						else {
+							h = usMap.height - rowA2.offsetHeight - rowA3.offsetHeight - 0.0075 * w;
+						}
+						h = Math.min( h, dataDisplay.offsetHeight );
+						rowA1.style.height = h + "px";
+						select2.style.fontSize = 1.1 * fontSize + "px";
+						var col9Width = 0.485 * baseWidth;
+						if ( isUSMapDisplaying ) {
+							select2.style.width = 0.4 * col9Width + "px";
+						}
+						else {
+							select2.style.width = 0.8 * col9Width + "px";
+						}
+						select2.style.right = 0.1 * col9Width + "px";
+						var select2Height = select2.offsetHeight;
+						select2Div.style.height = select2Height + "px";
+						select2Div.style.marginBottom = 0.01 * w + "px";
+						
+						resetChartsButton.style.fontSize = fontSize + "px";
+						resetChartsButton.style.borderWidth = fontSize / 10 + "px";
+						resetChartsButton.style.height = select2Height + "px";
+						if ( isUSMapDisplaying ) {
+							resetChartsButton.style.width = 0.4 * col9Width + "px";
+						}
+						else {
+							resetChartsButton.style.width = 0.8 * col9Width + "px";
+						}
+						resetChartsButton.style.left = 0.1 * col9Width + "px";
+						resetChartsButtonDiv.style.height = select2Height + "px";
+						resetChartsButtonDiv.style.marginBottom = 0.01 * w + "px";
+						
+						for ( var i = 0; i < charts.length; i++ ) {
+							makeChart( charts[i], "USA", w - parseInt( base.style.paddingLeft ) 
+								- parseInt( base.style.paddingRight ) );
+							if ( i < charts.length - 1 ) {
+								charts[i].style.marginBottom = 0.03 * w + "px";
+							}
+							
+						}
+						finishedSetup = true;
+					});
+				});
+			});
+		}
+		
+		function processData( allDataFromJSON ) {
+			allData = allDataFromJSON;
+			
+			for ( var i = 0; i < allData.length; i++ ) {
+				var data = allData[i];
+				data.getEntry = function( state ) {
+					var self = this;
+					var entries = self.entries;
+					for ( var j = 0; j < entries.length; j++ ) {
+						if ( entries[j].s == state ) {
+							return entries[j];
+						}
+					}
+					
+					return null;
+				};
+			}
+			
+			dataFromToday = allData[allData.length - 1];
+			entriesFromToday = dataFromToday.entries;
+			calendarFromToday = new Calendar( dataFromToday.year, dataFromToday.month, dataFromToday.day, 
+				dataFromToday.hour, dataFromToday.minute );
+			dataFromYesterday = allData[allData.length - 2];
+			entriesFromYesterday = dataFromYesterday.entries;
+			
+			sortEntries0();
+		}
+
+		function compareEntries( entry1, entry2 ) {
+			if ( entry1.s == entry2.s )
+				return 0;
+			
+			var tiebreakerOrders;
+			if ( sortingMethod.startsWith( "case mortality rate" ) ) {
+				tiebreakerOrder = [ "c_m_r", "d", "c", "c_p_c", "s"];
+			}
+			else if ( sortingMethod.startsWith( "total cases" ) ) {
+				if ( sortingMethod.startsWith( "total cases per 100,000 people" ) ) {
+					tiebreakerOrder = [ "c_p_c", "c", "d", "c_m_r", "s"];
+				}
+				else {
+					tiebreakerOrder = [ "c", "c_p_c", "d", "c_m_r", "s"];
+				}
+				
+			}
+			else if ( sortingMethod.startsWith( "total deaths" ) ) {
+				tiebreakerOrder = [ "d", "c_m_r", "c", "c_p_c", "s"];
+			}
+			
+			var reverse = sortingMethod.endsWith( "-reverse" );
+			for ( var i = 0; i < tiebreakerOrder.length; i++ ) {
+				var tiebreaker = tiebreakerOrder[i];
+				var var1 = entry1[tiebreaker];
+				var var2 = entry2[tiebreaker];
+				var c = var1 - var2;
+				if ( reverse ) {
+					c = -c;
+				}
+				if ( c > 0 ) {
+					return 1;
+				}
+				else if ( c < 0 ) {
+					return -1;
+				}
+			}
+			// but equality check was made earlier.
+			throw new Error( "Bad input for \"sortingMethod\"");
+		}
+		function sortEntries0() {
+			entriesFromToday = sortEntries1( entriesFromToday, 0, entriesFromToday.length - 1 );
+			allData[allData.length - 1].entries = entriesFromToday;
+		}
+		
+		function sortEntries1( entries, l, h ) {
+			if ( l < h ) {
+				var m = Math.trunc( ( l + h ) / 2 );
+				entries = sortEntries1( entries, l, m );
+				entries = sortEntries1( entries, m + 1, h );
+				entries = merge( entries, l, h );
+			}
+			
+			return entries;
+		}
+		
+		function merge( entries, l, h ) {
+			if ( l >= h )
+				return;
+			var m = Math.trunc( ( l + h ) / 2 );
+			var index1 = l;
+			var index2 = m + 1;
+			var sorted = JSON.parse( JSON.stringify( entries ) );
+			var index3 = l;
+			while ( index1 <= m && index2 <= h ) {
+				var entry1 = entries[index1];
+				var entry2 = entries[index2];
+				var c = compareEntries( entry1, entry2 );
+				if ( c > 0 ) {
+					sorted[index3] = entry1;
+					index3++;
+					index1++;
+				}
+				else if ( c < 0 ) {
+					sorted[index3] = entry2;
+					index3++;
+					index2++;
+				}
+				else {
+					sorted[index3] = entry1;
+					index3++;
+					sorted[index3] = entry2;
+					index3++;
+					
+					index1++;
+					index2++;
+				}
+			}
+			while ( index1 <= m ) {
+				var entry1 = entries[index1];
+				sorted[index3] = entry1;
+				index3++;
+				index1++;
+			}
+			while ( index2 <= h ) {
+				var entry2 = entries[index2];
+				sorted[index3] = entry2;
+				index3++;
+				index2++;
+			}
+			return sorted;
+		}
+		
+
+		function toggleDisplayInsignificantEntries() {
+			var scrollY = rowA1.scrollTop;
+			var w = dataDisplay.offsetWidth;
+			for ( var i = 1; i < dataDisplay.children.length; i++ ) {
+				var row = dataDisplay.children[i];
+				if ( !isStateSignificant( row.state ) ) {
+					if ( !displayInsignificantEntries() ) {
+						row.setAttribute( "class", "row d-none" );
+					}
+					else {
+						row.setAttribute( "class", "row" );
+						row.style.paddingLeft = w / 50 + "px";
+						row.style.paddingRight = w / 50 + "px";
+						var w = dataDisplay.offsetWidth;
+						for ( var j = 0; j < row.children.length; j++ ) {
+							var child = row.children[j];
+							defaultFont( child, i, w );
+							child.style.width = widths[j] * ( row.offsetWidth - parseFloat( row.style.paddingLeft ) 
+								- parseFloat( row.style.paddingRight ) ) + "px";
+						}
+					}
+				}
+			}
+			updateCookies();
+		}
+		
+		var sortingMethods = ["total cases", "total cases per 100,000 people", "total deaths", "case mortality rate"];
+		function refreshDataDisplay() {
+			var scrollY = window.scrollY;	
+			dataDisplay.innerHTML = dataDisplayHeaderHTML;
+			// scrolled up, so force scroll position of the page to stay the same as before
+			window.scrollTo( 0, scrollY );
+			var w = dataDisplay.offsetWidth;
+			var padding = w / 50 + "px";
+			dataDisplay.style.paddingTop = padding;
+			dataDisplay.style.paddingBottom = padding;
+			
+			var dataDisplayHeader = dataDisplay.children[0];
+			dataDisplayHeader.style.paddingLeft = padding;
+			dataDisplayHeader.style.paddingRight = padding;
+			var maxHeight = 0;
+			for ( var i = 0; i < dataDisplayHeader.children.length; i++ ) {
+				var child = dataDisplayHeader.children[i];
+				
+				child.style.position = "absolute";
+				child.style.bottom = "0px";
+				// of dataDisplayHeader to account for paddingLeft
+				child.style.left = lefts[i] * 0.96 * w + w / 50 + "px";
+				child.style.width = widths[i] * 0.96 * w + "px";
+				defaultFont( child, 0, w );
+				
+				if ( child.offsetHeight > maxHeight ) {
+					maxHeight = child.offsetHeight;
+				}
+				
+				if ( i >= 2 && i < 6 ) {
+					child.sortingMethod = sortingMethods[i - 2];
+					child.onclick = function() {
+						var self = this;
+						if ( self.state == 0 ) {
+							sortingMethod = self.sortingMethod;
+							self.style.textDecoration = "underline";
+							self.state = 1;
+						}
+						else if ( self.state == 1 ) {
+							sortingMethod = self.sortingMethod + "-reverse";
+							self.style.fontStyle = "italic";
+							self.state = 2;
+						}
+						else {
+							sortingMethod = self.sortingMethod;
+							self.style.fontStyle = "normal";
+							self.state = 1;
+						}
+						
+						sortEntries0();
+						refreshDataDisplay();
+						updateCookies();
+						
+						for ( var i = 0; i < dataDisplay.children[0].children.length; i++ ) {
+							var child = dataDisplay.children[0].children[i];
+							if ( child.sortingMethod != self.sortingMethod ) {
+								child.style.textDecoration = "normal";
+								child.style.fontStyle = "normal";
+								child.state = 0;
+							}
+						}
+					};
+					
+					if ( child.sortingMethod == sortingMethod ) {
+						child.style.textDecoration = "underline";
+						child.state = 1;
+					}
+					else if ( child.sortingMethod + "-reverse" == sortingMethod ) {
+						child.style.textDecoration = "underline";
+						child.style.fontStyle = "italic";
+						child.state = 2;
+					}
+					else {
+						child.state = 0;
+					}
+					
+					child.style.cursor = "pointer";
+				}
+				
+			}
+			dataDisplayHeader.style.height = maxHeight + "px";
+			
+			var pos = 1;
+			for ( var i = 0; i < entriesFromToday.length; i++ ) {
+				var entry = entriesFromToday[i];
+				
+				var yesterdayEntry;
+				for ( var j = 0; j < entriesFromYesterday.length; j++ ) {
+					if ( entry.s == entriesFromYesterday[j].s ) {
+						yesterdayEntry = entriesFromYesterday[j];
+						break;
+					}
+				}
+				
+				var row = document.createElement( "div" );
+				row.setAttribute( "class", "row" );
+				row.setAttribute( "id", entry.s );
+				row.state = entry.s;
+				
+				row.style.position = "relative";
+				// right edges too.
+				row.style.paddingLeft = w / 50 + "px";
+				row.style.paddingRight = w / 50 + "px";
+				
+				var finalHTML = "";
+				finalHTML += '<div>' + pos + '</div>';
+				finalHTML += '<div>' + translate( entry.s ) + '</div>';
+				finalHTML += '<div>' + entry.c.toLocaleString( language ) + '</div>';
+				finalHTML += '<div>' + entry.c_p_c.toLocaleString( language ) + '</div>';
+				finalHTML += '<div>' + entry.d.toLocaleString( language ) + '</div>';
+				finalHTML += '<div>' + entry.c_m_r.toLocaleString( language ) + '%</div>';
+				if ( !isUpdatedToday( entry.s ) ) {
+					finalHTML += '<div></div>';
+				}
+				else {
+					finalHTML += '<div>✔</div>';
+				}
+				row.innerHTML = finalHTML;
+				
+				
+				dataDisplay.appendChild( row );
+				for ( var j = 0; j < row.children.length; j++ ) {
+					var child = row.children[j];
+					defaultFont( child, pos, w );
+					child.style.width = widths[j] * ( 0.96 * w ) + "px";
+				}
+				
+				if ( !displayInsignificantEntries() && !isEntrySignificant( entry ) ) {
+					row.setAttribute( "class", "row d-none" );
+				}
+				
+				row.onmouseenter = function() {
+					var self = this;
+					displayStateStats( self.id );
+					self.style.backgroundColor = "#e8e8e8";
+				};
+				row.style.cursor = "pointer";
+				row.onmouseleave = function() {
+					var self = this;
+					self.style.backgroundColor = "transparent";
+				}
+				
+				row.onclick = function() {
+					var self = this;
+					var state = self.state;
+					if ( select2.value != state ) {
+						select2.value = state;
+						
+						for ( var i = 0; i < charts.length; i++ ) {
+							var isChecked = false;
+							if ( i % 2 == 1 ) {
+								isChecked = charts[i].checkbox.checked;
+							}
+							
+							updateChart( charts[i], state );
+							if ( isChecked ) {
+								charts[i].checkbox.checked = true;
+								charts[i].checkbox.onclick();
+							}
+						}
+					}
+					
+					var y = parseInt( base.style.paddingTop ) + update.offsetHeight + languageDiv.offsetHeight
+						+ parseFloat( languageDiv.style.marginBottom ) + row1.offsetHeight 
+						+ parseInt( row1.style.marginBottom ) / 2;
+					setTimeout( function() {
+						window.scrollTo( { left: 0, top: y, behavior: "smooth" } );
+						if ( isMobile ) {
+							self.onmouseleave();
+						}
+					}, 1 );
+				};
+				
+				pos++;
+			}
+			
+			displayNationalStats();
+		}
+		
+		function defaultFont( div, pos, dataDisplayWidth ) {
+			var colors = [
+				"red", "orange", "goldenrod", "green", "blue", "purple", "black"
+			];
+			if ( pos >= 1 && pos <= 6 ) {
+				div.style.color = colors[pos - 1];
+			}
+			else {
+				div.style.color = colors[6];
+			}
+			
+			var fontSize = dataDisplayWidth / 50;
+			div.style.fontSize = fontSize + "px";
+			div.style.fontWeight = "bold";
+			
+			div.style.paddingTop = fontSize / 8 + "px";
+			div.style.paddingBottom = fontSize / 8 + "px";
+			div.style.paddingRight = fontSize / 2 + "px";
+		}
+		
+		function isEntrySignificant( entry ) {
+			return entry.c >= 2000;
+		}
+		
+		function isStateSignificant( state ) {
+			return isEntrySignificant( dataFromToday.getEntry( state ) );
+		}
+		
+		function readjustSizes() {
+			var isUSMapDisplaying = isUSMapVisible();
+			var w = baseWidth;
+			base.style.padding = 0.015 * w + "px";
+			row1.style.marginBottom = 0.03 * w + "px";
+			
+			var fontSize;
+			if ( isUSMapDisplaying ) {
+				fontSize = 0.01 * w;
+			}
+			else {
+				fontSize = 0.02 * w;
+			}
+			if ( update.className == "col-12" ) {
+				updateNotification.style.fontSize = 1.3 * fontSize + "px";
+				
+				dismissUpdateButton.style.fontSize = 1.1 * fontSize + "px";
+				dismissUpdateButton.style.borderWidth = fontSize / 10 + "px";
+				dismissUpdateButton.style.height = updateNotification.offsetHeight + "px";
+				
+				update.style.height = 1.8 * updateNotification.offsetHeight + "px";
+				var combinedWidth = updateNotification.offsetWidth + dismissUpdateButton.offsetWidth 
+					+ 0.1 * w;
+				updateNotification.style.left = 0.5 * w - combinedWidth / 2 + "px";
+				dismissUpdateButton.style.right = 0.5 * w - combinedWidth / 2 + "px";
+			}
+			
+			select0.style.fontSize = 1.25 * fontSize + "px";
+			select0.style.width = 16 * fontSize + "px";
+			// get the correct left position
+			select0.style.left = 0.97 * w - 16 * fontSize + "px";
+			languageDiv.style.marginBottom = 0.01 * w + "px";
+			rowA1.style.borderWidth = fontSize / 10 + "px";
+			var scrollYRatio = rowA1.scrollTop / dataDisplay.offsetHeight;
+			readjustDataDisplayTextFonts();
+			
+			if ( isUSMapDisplaying ) {
+				rowA1.style.marginBottom = 0.0075 * w + "px";
+			}
+			else {
+				rowA1.style.marginBottom = 0.015 * w + "px";
+			}
+			if ( isUSMapDisplaying ) {
+				displayInsignificantEntriesLabel.style.height = 1.4 * 0.012 * w + "px";
+				rowA2.style.height = 1.4 * 0.012  * w + "px";
+			}
+			else {
+				displayInsignificantEntriesLabel.style.height = 1.4 * 0.024 * w + "px";
+				rowA2.style.height = 1.4 * 0.024 * w + "px";
+			}
+			
+			var checkbox = displayInsignificantEntriesLabel.children[0];
+			// and makes it look it shorter
+			if ( isUSMapDisplaying ) {
+				checkbox.style.width = 1.4 * 0.012 * w + "px";
+				checkbox.style.height = 1.4 * 0.012 * w + "px";
+				displayInsignificantEntriesLabel.children[1].style.lineHeight = 1.4 * 0.012 * w + "px";	// span
+			}
+			else {
+				checkbox.style.width = 1.4 * 0.024 * w + "px";
+				checkbox.style.height = 1.4 * 0.024 * w + "px";
+				displayInsignificantEntriesLabel.children[1].style.lineHeight = 1.4 * 0.024 * w + "px";	// span
+			}
+			
+			var span = displayInsignificantEntriesLabel.children[1];
+			if ( isUSMapDisplaying ) {
+				span.style.fontSize = 0.012 * w + "px";
+				span.style.left = 0.024 * w + "px";
+			}
+			else {
+				span.style.fontSize = 0.024 * w + "px";
+				span.style.left = 0.048 * w + "px";
+			}
+			
+			var colAWidth;
+			if ( isUSMapDisplaying ) {
+				colAWidth = 0.485 * baseWidth;
+			}
+			else {
+				colAWidth = 0.97 * baseWidth;
+			}
+			
+			displayInsignificantEntriesLabel.style.width = 0.95 * colAWidth;
+			readjustrowA3TextFonts();
+			
+			if ( isUSMapDisplaying ) {
+				loadMap();
+			}
+			var h;
+			if ( !isUSMapDisplaying ) {
+				h = rowA1.offsetWidth * 0.5;
+			}
+			else {
+				// usMap.height = 0.75 * (0.97 / 2 * baseWidth - 0.01 - baseWidth)
+				h = 0.35625 * baseWidth - parseFloat( rowA2.style.height ) - rowA3.offsetHeight - 0.0075 * w;
+			}
+			h = Math.min( h, dataDisplay.offsetHeight );
+			rowA1.style.height = h + "px";
+			rowA1.scrollTop = scrollYRatio * dataDisplay.offsetHeight;
+			select2.style.fontSize = 1.1 * fontSize + "px";
+			var col9Width = 0.485 * baseWidth;
+			if ( isUSMapDisplaying ) {
+				select2.style.width = 0.4 * col9Width + "px";
+			}
+			else {
+				select2.style.width = 0.8 * col9Width + "px";
+			}
+			select2.style.right = 0.1 * col9Width + "px";
+			var select2Height = select2.offsetHeight;
+			select2Div.style.height = select2Height + "px";
+			select2Div.style.marginBottom = 0.01 * w + "px";
+			
+			resetChartsButton.style.fontSize = fontSize + "px";
+			resetChartsButton.style.borderWidth = fontSize / 10 + "px";
+			resetChartsButton.style.height = select2Height + "px";
+			if ( isUSMapDisplaying ) {
+				resetChartsButton.style.width = 0.4 * col9Width + "px";
+			}
+			else {
+				resetChartsButton.style.width = 0.8 * col9Width + "px";
+			}
+			resetChartsButton.style.left = 0.1 * col9Width + "px";
+			resetChartsButtonDiv.style.height = select2Height + "px";
+			resetChartsButtonDiv.style.marginBottom = 0.01 * w + "px";
+			
+			for ( var i = 0; i < charts.length; i++ ) {
+				var checked = false;
+				if ( i % 2 == 1 ) {
+					checked = charts[i].checkbox.checked;
+				}
+				makeChart( charts[i], charts[i].state, baseWidth - parseInt( base.style.paddingLeft ) 
+					- parseInt( base.style.paddingRight ) );
+				if ( checked ) {
+					charts[i].checkbox.checked = true;
+					charts[i].checkbox.onclick();
+				}
+				if ( i < charts.length - 1 ) {
+					charts[i].style.marginBottom = 0.03 * w + "px";
+				}
+			}
+		}
+
+		function readjustDataDisplayTextFonts() {
+			var w = dataDisplay.offsetWidth;
+			var padding = w / 50 + "px";
+			dataDisplay.style.paddingTop = padding;
+			dataDisplay.style.paddingBottom = padding;
+			
+			var dataDisplayHeader = dataDisplay.children[0];
+			
+			dataDisplayHeader.style.paddingLeft = padding;
+			dataDisplayHeader.style.paddingRight = padding;
+			
+			var maxHeight = 0;
+			for ( var i = 0; i < dataDisplayHeader.children.length; i++ ) {
+				var child = dataDisplayHeader.children[i];
+				defaultFont( child, 0, w );
+				child.style.position = "absolute";
+				child.style.bottom = "0px";
+				child.style.left = lefts[i] * 0.96 * w + w / 50 + "px";
+				child.style.width = widths[i] * 0.96 * w + "px";
+				
+				if ( child.offsetHeight > maxHeight ) {
+					maxHeight = child.offsetHeight;
+				}
+			}
+			dataDisplayHeader.style.height = maxHeight + "px";
+			
+			for ( var i = 1; i < dataDisplay.children.length; i++ ) {
+				var row = dataDisplay.children[i];
+				row.style.paddingLeft = w / 50 + "px";
+				row.style.paddingRight = w / 50 + "px";
+				
+				for ( var j = 0; j < row.children.length; j++ ) {
+					var child = row.children[j];
+					defaultFont( child, i, w );
+					child.style.width = widths[j] * ( 0.96 * w ) + "px";
+				}
+			}
+		}
+		
+		function readjustrowA3TextFonts() {
+			var w = baseWidth;
+			var fontSizes;
+			if ( isUSMapVisible() ) {
+				fontSizes = [w / 60, w / 100, w / 100, w / 100, w / 100, w / 125];
+			}
+			else {
+				fontSizes = [w / 30, w / 50, w / 50, w / 50, w / 50, w / 62.5];
+			}
+			var padding = w / 800 + "px";
+			for ( var i = 0; i < rowA3.children.length; i++ ) {
+				var div = rowA3.children[i];
+				div.style.fontSize = fontSizes[i] + "px";
+				div.style.paddingBottom = padding;
+				if ( i == 0 ) {
+					div.style.fontWeight = "bold";
+				}
+			}
+		}
+		
+		function displayStateStats( state ) {
+			var entry = getEntryFromToday( state );
+			var yesterdayEntry = getEntryFromYesterday( state );
+			var changeInCases = entry.c - yesterdayEntry.c;
+			var changeInCasesPer100000People = entry.c_p_c - yesterdayEntry.c_p_c;
+			var changeInDeaths = entry.d - yesterdayEntry.d;
+			var strings;
+			switch ( languageIndex() ) {
+				case 0: {
+					strings = [
+						entry.s + ":",
+						
+						" - Total cases: " + entry.c.toLocaleString( language ) + " (+" + changeInCases.toLocaleString( language )
+							+ " from yesterday)",
+							
+						"&emsp;&emsp;" + " - Per 100,000 people: " + entry.c_p_c.toLocaleString( language ) 
+							+ " (+" + changeInCasesPer100000People.toLocaleString( language ) + " from yesterday)",
+							
+						" - Total deaths: " + entry.d.toLocaleString( language ) + " (+" + changeInDeaths.toLocaleString( language )
+							+ " from yesterday)",
+							
+						" - Case fatality rate: " + entry.c_m_r.toLocaleString( language ) + "%",
+						
+						lastUpdatedOn
+					];
+					break;
+				}
+				case 1: {
+					strings = [
+						translate( entry.s ) + ":",
+						
+						" - Casos totales: " + entry.c.toLocaleString( language ) + " (+" + changeInCases.toLocaleString( language )
+							+ " de ayer)",
+							
+						"&emsp;&emsp;" + " - Por 100,000 personas: " + entry.c_p_c.toLocaleString( language ) 
+							+ " (+" + changeInCasesPer100000People.toLocaleString( language ) + " de ayer)",
+							
+						" - Muertes totales: " + entry.d.toLocaleString( language ) + " (+" + changeInDeaths.toLocaleString( language )
+							+ " de ayer)",
+							
+						" - Tasa de letalidad: " + entry.c_m_r.toLocaleString( language ) + "%",
+						
+						lastUpdatedOn
+					];
+					break;
+				}
+				case 2: {
+					strings = [
+						translate( entry.s ) + "：",
+						
+						" - 累计确诊：" + entry.c.toLocaleString( language ) + "（从昨天+" + changeInCases.toLocaleString( language ) 
+							+ "）",
+							
+						"&emsp;&emsp;" + " - 每10万人中：" + entry.c_p_c.toLocaleString( language ) + "（从昨天+" 
+							+ changeInCasesPer100000People.toLocaleString( language ) + "）",
+							
+						" - 累计死亡：" + entry.d.toLocaleString( language ) + "（从昨天+" + changeInDeaths.toLocaleString( language ) 
+							+ "）",
+							
+						" - 病死率：" + entry.c_m_r.toLocaleString( language ) + "%",
+						
+						lastUpdatedOn
+					];
+					break;
+				}
+				case 3: {
+					strings = [
+						translate( entry.s ) + ":",
+						
+						" - Nombre total des cas: " + entry.c.toLocaleString( language ) + " (+" 
+							+ changeInCases.toLocaleString( language ) + " d'hier)",
+							
+						"&emsp;&emsp;" + " - Pour 100 000 personnes: " + entry.c_p_c.toLocaleString( language ) 
+							+ " (+" + changeInCasesPer100000People.toLocaleString( language ) + " d'hier)",
+							
+						" - Nombre total des décès: " + entry.d.toLocaleString( language ) + " (+" 
+							+ changeInDeaths.toLocaleString( language ) + " d'hier)",
+							
+						" - Taux de létalité: " + entry.c_m_r.toLocaleString( language ) + "%",
+						
+						lastUpdatedOn
+					];
+					break;
+				}
+				case 4: {
+					strings = [
+						translate( entry.s ) + "：",
+						
+						" - 累積診断：" + entry.c.toLocaleString( language ) + "（昨日から+" + changeInCases.toLocaleString( language ) 
+							+ "）",
+							
+						"&emsp;&emsp;" + " - 10万人あたりの：" + entry.c_p_c.toLocaleString( language ) + "（昨日から+" 
+							+ changeInCasesPer100000People.toLocaleString( language ) + "）",
+							
+						" - 累積死亡：" + entry.d.toLocaleString( language ) + "（昨日から+" 
+							+ changeInDeaths.toLocaleString( language ) + "）",
+							
+						" - 致死率：" + entry.c_m_r.toLocaleString( language ) + "%",
+						
+						lastUpdatedOn
+					];
+					break;
+				}
+			}
+			var w = baseWidth;
+			var fontSizes;
+			if ( isUSMapVisible() ) {
+				fontSizes = [w / 60, w / 100, w / 100, w / 100, w / 100, w / 125];
+			}
+			else {
+				fontSizes = [w / 30, w / 50, w / 50, w / 50, w / 50, w / 62.5];
+			}
+			
+			rowA3.innerHTML = "";	// Clear content
+			var padding = w / 800 + "px";
+			for ( var i = 0; i < strings.length; i++ ) {
+				var div = document.createElement( "div" );
+				strings[i] = strings[i].replaceAll( "+-", "-" );
+				div.innerHTML = strings[i];
+				div.style.fontSize = fontSizes[i] + "px";
+				div.style.paddingBottom = padding;
+				if ( i == 0 ) {
+					div.style.fontWeight = "bold";
+				}
+				
+				rowA3.appendChild( div );
+			}
+		}
+		
+		function displayNationalStats() {
+			var changeInCases = dataFromToday.cases - dataFromYesterday.cases;
+			var changeInCasesPer100000People = dataFromToday.cases_per_capita - dataFromYesterday.cases_per_capita;
+			var changeInDeaths = dataFromToday.deaths - dataFromYesterday.deaths;
+			var strings;
+			switch ( languageIndex() ) {
+				case 0: {
+					strings = [ "Across the country:",
+					
+						" - Total cases: " + dataFromToday.cases.toLocaleString( language ) + " (+" 
+							+ changeInCases.toLocaleString( language ) + " from yesterday)",
+							
+						"&emsp;&emsp;" + " - Per 100,000 people: " 
+							+ dataFromToday.cases_per_capita.toLocaleString( language ) + " (+" 
+							+ changeInCasesPer100000People.toLocaleString( language ) + " from yesterday)",
+							
+						" - Total deaths: " + dataFromToday.deaths.toLocaleString( language ) + " (+" 
+							+ changeInDeaths.toLocaleString( language ) + " from yesterday)",
+							
+						" - Case fatality rate: " + dataFromToday.case_mortality_rate.toLocaleString( language ) + "%", 
+						
+						lastUpdatedOn
+					];
+					break;
+				}
+				case 1: {
+					strings = [ "A escala nacional:",
+					
+						" - Casos totales: " + dataFromToday.cases.toLocaleString( language ) + " (+" 
+							+ changeInCases.toLocaleString( language ) + " de ayer)",
+							
+						"&emsp;&emsp;" + " - Por 100,000 personas: " 
+							+ dataFromToday.cases_per_capita.toLocaleString( language ) + " (+" 
+							+ changeInCasesPer100000People.toLocaleString( language ) + " de ayer)",
+							
+						" - Muertes totales: " + dataFromToday.deaths.toLocaleString( language ) + " (+" 
+							+ changeInDeaths.toLocaleString( language ) + " de ayer)",
+							
+						" - Tasa de letalidad: " + dataFromToday.case_mortality_rate.toLocaleString( language ) + "%", 
+						
+						lastUpdatedOn
+					];
+					break;
+				}
+				case 2: {
+					var strings = [
+						"全美国:",
+					
+						" - 累计确诊: " + dataFromToday.cases.toLocaleString( language ) + "（从昨天+" 
+							+ changeInCases.toLocaleString( language ) + "）",
+							
+						"&emsp;&emsp;" + " - 每10万人中: " + dataFromToday.cases_per_capita.toLocaleString( language ) + "（从昨天+" 
+							+ changeInCasesPer100000People.toLocaleString( language ) + "）",
+							
+						" - 累计死亡: " + dataFromToday.deaths.toLocaleString( language ) + "（从昨天+" 
+							+ changeInDeaths.toLocaleString( language ) + "）",
+							
+						" - 病死率: " + dataFromToday.case_mortality_rate.toLocaleString( language ) + "%", 
+						
+						lastUpdatedOn
+					];
+					break;
+				}
+				case 3: {
+					strings = [
+						"À l'échelle nationale" + ":",
+						
+						" - Nombre total des cas: " + dataFromToday.cases.toLocaleString( language ) + " (+" 
+							+ changeInCases.toLocaleString( language ) + " d'hier)",
+							
+						"&emsp;&emsp;" + " - Pour 100 000 personnes: " + dataFromToday.cases_per_capita.toLocaleString( language ) 
+							+ " (+" + changeInCasesPer100000People.toLocaleString( language ) + " d'hier)",
+							
+						" - Nombre total des décès: " + dataFromToday.deaths.toLocaleString( language ) + " (+" 
+							+ changeInDeaths.toLocaleString( language ) + " d'hier)",
+							
+						" - Taux de létalité: " + dataFromToday.case_mortality_rate.toLocaleString( language ) + "%",
+						
+						lastUpdatedOn
+					];
+					break;
+				}
+				case 4: {
+					var strings = [
+						"全国で：",
+					
+						" - 累積診断：" + dataFromToday.cases.toLocaleString( language ) + "（昨日から+" 
+							+ changeInCases.toLocaleString( language ) + "）",
+							
+						"&emsp;&emsp;" + " - 10万人あたりの：" + dataFromToday.cases_per_capita.toLocaleString( language ) + "（昨日から+" 
+							+ changeInCasesPer100000People.toLocaleString( language ) + "）",
+							
+						" - 累積死亡：" + dataFromToday.deaths.toLocaleString( language ) + "（昨日から+" 
+							+ changeInDeaths.toLocaleString( language ) + "）",
+							
+						" - 致死率：" + dataFromToday.case_mortality_rate.toLocaleString( language ) + "%", 
+						
+						lastUpdatedOn
+					];
+					break;
+				}
+			}
+			var w = baseWidth;
+			var fontSizes;
+			if ( isUSMapVisible() ) {
+				fontSizes = [w / 60, w / 100, w / 100, w / 100, w / 100, w / 125];
+			}
+			else {
+				fontSizes = [w / 30, w / 50, w / 50, w / 50, w / 50, w / 62.5];
+			}
+
+			rowA3.innerHTML = "";	// Clear content
+			var padding = w / 800 + "px";
+			for ( var i = 0; i < strings.length; i++ ) {
+				var div = document.createElement( "div" );
+				strings[i] = strings[i].replaceAll( "+-", "-" );
+				div.innerHTML = strings[i];
+				div.style.fontSize = fontSizes[i] + "px";
+				div.style.paddingBottom = padding;
+				if ( i == 0 ) {
+					div.style.fontWeight = "bold";
+				}
+				
+				rowA3.appendChild( div );
+			}
+		}
+	
+		function loadMap() {
+			if ( !isUSMapVisible() ) {
+				return;
+			}
+
+			colB.style.paddingLeft = 0.01 * baseWidth + "px";
+
+			var pinnedStates = new Array();
+			var boxLeftMultipliers = new Array();
+			var boxTopMultipliers = new Array();
+			var movedByUsers = new Array();
+			for ( var i = 0; i < colB.children.length; i++ ) {
+				if ( colB.children[i].className == "state-data-box" ) {
+					pinnedStates.push( colB.children[i].state );
+					boxLeftMultipliers.push( colB.children[i].circle.boxLeftMultiplier );
+					boxTopMultipliers.push( colB.children[i].circle.boxTopMultiplier );
+					movedByUsers.push( colB.children[i].movedByUser );
+				}
+			}
+
+			var mapFound = false;
+			var img;
+			for ( var i = 0; i < colB.children.length; i++ ) {
+				if ( colB.children[i].getAttribute( "src" ) == "../data/us map.png" ) {
+					img = colB.children[i];
+					mapFound = true;
+					break;
+				}
+			}
+			colB.innerHTML = "";
+			if ( !mapFound ) {
+				img = document.createElement( "img" );
+				img.src = "../data/us map.png";
+				img.setAttribute( "class", "img-fluid" );
+				img.setAttribute( "id", "usMap" );
+				usMap = img;
+			}
+			// leftMargin of colB is 0.01 * baseWidth
+			img.width = 0.475 * baseWidth;
+			img.height = 0.35625 * baseWidth;
+			img.left = 0.01 * baseWidth + "px";
+			colB.appendChild( img );
+			colB.style.height = 0.35625 * baseWidth + "px";
+			
+			var states = stateCircleData.split( "\n" );
+			var multiplier = 0.00059375 * baseWidth;
+			for ( var i = 0; i < states.length; i++ ) {
+				if ( states[i] == "" ) {
+					continue;
+				}
+				var data = states[i].split( " " );
+
+				var circle = document.createElement( "span" );
+				circle.setAttribute( "class", "circle" );
+				circle.style.position = "absolute";
+
+				circle.style.left = data[0] * multiplier + 0.01 * baseWidth + "px";
+				circle.style.top = data[1] * multiplier + "px";
+				circle.style.width = 2 * data[2] * multiplier + "px";
+				circle.style.height = 2 * data[2] * multiplier + "px";
+				circle.radius = data[2] * multiplier;
+				circle.style.borderRadius = "50%";
+				
+				var state = data[3];
+				state = state.replaceAll( "-", " " );
+				circle.state = state;
+				if ( !isUpdatedToday( state ) ) {
+					circle.style.backgroundColor = "rgb(140, 140, 140)";
+				}
+				else {
+					circle.style.backgroundColor = "red";
+				}
+				
+				circle.isPinned = false;
+				if ( !isMobile ) {
+					circle.onmouseenter = function() {
+						var self = this;
+						if ( !self.isPinned ) {
+							var box = self.stateDataBox;
+							if ( self.stateDataBox == undefined ) {
+								self.stateDataBox = getStateDataBox( self );
+								box = self.stateDataBox;
+								colB.appendChild( box );
+								
+								var maxWidth = box.children[0].offsetWidth;
+								for ( var i = 1; i < box.children.length; i++ ) {
+									if ( box.children[i].offsetWidth > maxWidth ) {
+										maxWidth = box.children[i].offsetWidth;
+									}
+								}
+								var multiplier = usMap.width / 800;
+								var padding = 9 * multiplier;
+								// create an illusion of have padding for left padding, and 3 * padding for right padding.
+								box.style.width = maxWidth + 4 * padding + "px";
+							}
+							else {
+								colB.appendChild( box );
+							}
+							defaultPositioningOfStateDataBox( self, box );
+						}
+					};
+					circle.onmouseleave = function() {
+						var self = this;
+						if ( !self.isPinned ) {
+							colB.removeChild( self.stateDataBox );
+							self.stateDataBox.movedByUser = false;
+						}
+					};
+					circle.onclick = function() {
+						var self = this;
+						self.isPinned = !self.isPinned;
+						if ( self.isPinned ) {
+							if ( self.style.backgroundColor == "red" ) {
+								self.style.backgroundColor = "rgb(150, 0, 0)";
+							}
+							else if ( self.style.backgroundColor = "rgb(140, 140, 140)" ) {
+								self.style.backgroundColor = "rgb(75, 75, 75)";
+							}
+							
+						}
+						else {
+							if ( self.style.backgroundColor == "rgb(150, 0, 0)" ) {
+								self.style.backgroundColor = "red";
+							}
+							else if ( self.style.backgroundColor == "rgb(75, 75, 75)" ) {
+								self.style.backgroundColor = "rgb(140, 140, 140)";
+							}
+						}
+					};
+				}
+				else {
+					circle.ontouchend = function() {
+						var self = this;
+						if ( !self.isPinned ) {
+							var box = self.stateDataBox;
+							if ( self.stateDataBox == undefined ) {
+								self.stateDataBox = getStateDataBox( self );
+								box = self.stateDataBox;
+								colB.appendChild( box );
+								
+								var maxWidth = box.children[0].offsetWidth;
+								for ( var i = 1; i < box.children.length; i++ ) {
+									if ( box.children[i].offsetWidth > maxWidth ) {
+										maxWidth = box.children[i].offsetWidth;
+									}
+								}
+								var multiplier = usMap.width / 800;
+								var padding = 9 * multiplier;
+								// create an illusion of have padding for left padding, and 3 * padding for right padding.
+								box.style.width = maxWidth + 4 * padding + "px";
+							}
+							else {
+								colB.appendChild( box );
+							}
+							defaultPositioningOfStateDataBox( self, box );
+						}
+						self.isPinned = !self.isPinned;
+						if ( self.isPinned ) {
+							if ( self.style.backgroundColor == "red" ) {
+								self.style.backgroundColor = "rgb(150, 0, 0)";
+							}
+							else if ( self.style.backgroundColor = "rgb(140, 140, 140)" ) {
+								self.style.backgroundColor = "rgb(75, 75, 75)";
+							}
+							
+						}
+						else {
+							if ( self.style.backgroundColor == "rgb(150, 0, 0)" ) {
+								self.style.backgroundColor = "red";
+							}
+							else if ( self.style.backgroundColor == "rgb(75, 75, 75)" ) {
+								self.style.backgroundColor = "rgb(140, 140, 140)";
+							}
+						}
+						if ( !self.isPinned ) {
+							colB.removeChild( self.stateDataBox );
+						}
+					};
+				}
+					
+				document.getElementById( "colB" ).appendChild( circle );
+			}
+				
+			while ( pinnedStates.length > 0 ) {
+				var state = pinnedStates.shift();
+				for ( var i = 0; i < colB.children.length; i++ ) {
+					var circle = colB.children[i];
+					// before loadMap() was called
+					if ( circle.className == "circle" && circle.state == state ) {
+						if ( !isMobile ) {
+							circle.onmouseenter();
+							circle.click();
+						}
+						else {
+							circle.ontouchend();
+						}
+						
+						var box = circle.stateDataBox;
+						
+						if ( movedByUsers.shift() ) {
+							var boxLeftMultiplier = boxLeftMultipliers.shift();
+							var boxTopMultiplier = boxTopMultipliers.shift();
+							
+							var left = boxLeftMultiplier * colB.offsetWidth;
+							if ( left + box.offsetWidth < colB.offsetWidth ) {
+								circle.boxLeftMultiplier = boxLeftMultiplier;
+							}
+							else {
+								// change, which alters the width of many things with respect to everything else).
+								// the lanugage, it might now extend rightwards with respect to colB beyond the end of colB.
+								// respect to colB.
+								left = colB.offsetWidth - box.offsetWidth;
+								circle.boxLeftMultiplier = left / colB.offsetWidth;
+							}
+							box.style.left = left + "px";
+							// so box cannot move/expand upwards or downwards with respect to colB.
+							circle.boxTopMultiplier = boxTopMultiplier;
+							circle.stateDataBox.style.top = boxTopMultiplier * colB.offsetHeight + "px";
+							
+							box.movedByUser = true;
+						}
+						else {
+							boxLeftMultipliers.shift();
+							boxTopMultipliers.shift();
+						}
+						
+						break;
+					}
+				}
+			}
+				
+			colB.activeBox = null;
+			if ( !isMobile ) {
+				colB.onmousemove = function( event ) {
+					var self = this;
+					if ( event.pageX >= self.offsetLeft && event.pageX < self.offsetLeft + parseFloat( colB.style.paddingLeft ) ) {
+						self.onmouseleave();
+					}
+					
+					if ( self.activeBox != null ) {
+						var box = self.activeBox;
+						var circle = box.circle;
+						event.preventDefault();
+						box.doNotRedirect = true;
+						box.movedByUser = true;
+						
+						var newPageXOfBox = event.pageX - box.deltaX;
+						var newLeft = newPageXOfBox - colB.offsetLeft;
+						if ( newLeft < parseFloat( colB.style.paddingLeft ) ) {
+							newLeft = parseFloat( colB.style.paddingLeft );
+						}
+						else if ( newLeft + box.offsetWidth > colB.offsetWidth ) {
+							newLeft = colB.offsetWidth - box.offsetWidth;
+						}
+						var newPageYOfBox = event.pageY - box.deltaY;
+						var newTop = newPageYOfBox - colB.offsetTop;
+						if ( newTop < 0 ) {
+							newTop = 0;
+						}
+						else if ( newTop + box.offsetHeight > colB.offsetHeight ) {
+							newTop = colB.offsetHeight - box.offsetHeight;
+						}
+						
+						box.style.left = newLeft + "px";
+						box.style.top = newTop + "px";
+						
+						circle.boxLeftMultiplier = parseFloat( box.style.left ) / colB.offsetWidth;
+						circle.boxTopMultiplier= parseFloat( box.style.top ) / colB.offsetHeight;
+					}
+				}
+				
+				colB.onmouseleave = function() {
+					var self = this;
+					if ( self.activeBox ) {
+						var box = self.activeBox;
+						box.active = false;
+						box.deltaX = null;
+						box.deltaY = null;
+						colB.activeBox = null;
+					}
+				}
+			}
+		}
+
+		function defaultPositioningOfStateDataBox( circle, box ) {
+			var distance = circle.radius + usMap.height / 150;
+			var width = box.offsetWidth;
+			var height = box.offsetHeight;
+			var centerX = parseFloat( circle.style.left ) + circle.radius;
+			var centerY = parseFloat( circle.style.top ) + circle.radius;
+			// circle.boxLeftMultiplier: the left of its stateDataBox with respect to colB (= 0 when left is at colB's left
+			// circle.boxTopMultiplier: the top of its stateDataBox with respect to colB
+			if ( centerX + width + distance < colB.offsetWidth ) {
+				box.style.left = centerX + distance + "px";
+				circle.boxLeftMultiplier = ( centerX + distance ) / colB.offsetWidth;
+			}
+			else {
+				box.style.left = centerX - width - distance + "px";
+				circle.boxLeftMultiplier = ( centerX - width - distance ) / colB.offsetWidth;
+			}
+			if ( centerY + height + distance < colB.offsetHeight ) {
+				box.style.top = centerY + distance + "px";
+				circle.boxTopMultiplier = ( centerY + distance ) / colB.offsetHeight;
+			}
+			else {
+				box.style.top = centerY - height - distance + "px";
+				circle.boxTopMultiplier = ( centerY - height - distance ) / colB.offsetHeight;
+			}
+		}
+
+		function getStateDataBox( circle ) {
+			var box = document.createElement( "div" );
+			box.setAttribute( "class", "state-data-box" );
+			box.state = circle.state;
+			box.circle = circle;
+			
+			box.style.position = "absolute";
+			var multiplier = usMap.width / 800;
+			// box.style.width = width + "px";
+			var height = 112 * multiplier;
+			box.style.height = height + "px";
+			
+			var entry = getEntryFromToday( circle.state );
+			var yesterdayEntry = getEntryFromYesterday( circle.state );
+			var deltaC = entry.c - yesterdayEntry.c;
+			var deltaC_p_c = entry.c_p_c - yesterdayEntry.c_p_c;
+			var deltaD = entry.d - yesterdayEntry.d;
+			var strings;
+			switch ( languageIndex() ) {
+				case 0: {
+					strings = [ 
+						circle.state, 
+						
+						" - Total cases: " + entry.c.toLocaleString( language ) + " (+" + deltaC.toLocaleString( language ) + ")",
+						
+						"&emsp;&emsp;" + " - Per 100,000 people: " + entry.c_p_c.toLocaleString( language ) + " (+" 
+							+ deltaC_p_c.toLocaleString( language ) + ")",	// 8 spaces before everything else
+							
+						" - Total deaths: " + entry.d.toLocaleString( language ) + " (+" + deltaD.toLocaleString( language ) + ")", 
+						
+						" - Case fatality rate: " + entry.c_m_r.toLocaleString( language ) + "%"
+					];
+					break;
+				}
+				case 1: {
+					strings = [ 
+						translate( circle.state ), 
+						" - Casos totales: " + entry.c.toLocaleString( language ) + " (+" + deltaC.toLocaleString( language ) + ")",
+						
+						"&emsp;&emsp;" + " - Por 100,000 personas: " + entry.c_p_c.toLocaleString( language ) + " (+" 
+							+ deltaC_p_c.toLocaleString( language ) + ")",	// 8 spaces before everything else
+							
+						" - Muertes totales: " + entry.d.toLocaleString( language ) + " (+" + deltaD.toLocaleString( language ) + ")", 
+						
+						" - Tasa de letalidad: " + entry.c_m_r.toLocaleString( language ) + "%"
+					];
+					break;
+				}
+				case 2: {
+					strings = [ 
+						translate( circle.state ), 
+						" - 累计确诊: " + entry.c.toLocaleString( language ) + "（+" + deltaC.toLocaleString( language ) + "）",
+						
+						"&emsp;&emsp;" + " - 每10万人中: " + entry.c_p_c.toLocaleString( language ) + "（+" 
+							+ deltaC_p_c.toLocaleString( language ) + "）",	// 8 spaces before everything else
+							
+						" - 累计死亡: " + entry.d.toLocaleString( language ) + "（+" + deltaD.toLocaleString( language ) + "）", 
+						
+						" - 病死率: " + entry.c_m_r.toLocaleString( language ) + "%"
+					];
+					break;
+				}
+				case 3: {
+					strings = [
+						translate( circle.state ) + ":",
+						" - Nombre total des cas: " + entry.c.toLocaleString( language ) + " (+" 
+							+ deltaC.toLocaleString( language ) + ")",
+							
+						"&emsp;&emsp;" + " - Pour 100 000 personnes: " + entry.c_p_c.toLocaleString( language ) 
+							+ " (+" + deltaC_p_c.toLocaleString( language ) + ")",
+							
+						" - Nombre total des décès: " + entry.d.toLocaleString( language ) + " (+" 
+							+ deltaD.toLocaleString( language ) + ")",
+						
+						" - Taux de létalité: " + entry.c_m_r.toLocaleString( language ) + "%",
+					];
+					break;
+				}
+				case 4: {
+					strings = [
+						translate( entry.s ) + "：",
+						
+						" - 累積診断：" + entry.c.toLocaleString( language ) + "（+" + deltaC.toLocaleString( language ) 
+							+ "）",
+							
+						"&emsp;&emsp;" + " - 10万人あたりの：" + entry.c_p_c.toLocaleString( language ) + "（+" 
+							+ deltaC_p_c.toLocaleString( language ) + "）",
+							
+						" - 累積死亡：" + entry.d.toLocaleString( language ) + "（+" 
+							+ deltaD.toLocaleString( language ) + "）",
+							
+						" - 病死率：" + entry.c_m_r.toLocaleString( language ) + "%",
+					];
+					break;
+				}
+			}
+
+			var y = 4 * multiplier;
+			for ( var i = 0; i < strings.length; i++ ) {
+				strings[i] = strings[i].replaceAll( "+-", "-" );
+				var temp = document.createElement( "div" );
+				temp.style.left = 9 * multiplier + "px";
+				temp.innerHTML = strings[i];
+				if ( i == 0 ) {
+					temp.style.fontSize = 18 * multiplier + "px";
+					temp.style.top = y + "px";
+					temp.style.fontWeight = "bold";
+					y += 25 * multiplier;
+				}
+				else {
+					temp.style.fontSize = 12 * multiplier + "px";
+					temp.style.top = y + "px";
+					y += 18 * multiplier;
+				}
+				
+				temp.style.whiteSpace = "nowrap";	
+				box.appendChild( temp );
+			}
+			for ( var i = 0; i < box.children.length; i++ ) {
+				box.children[i].style.position = "absolute";
+			}
+			
+			box.style.backgroundColor = "lightyellow";
+			box.style.borderStyle = "solid";
+			box.style.borderWidth = 3 * multiplier + "px";
+			box.style.borderColor = "black";
+			box.style.overflowX = "hidden";
+			
+			box.style.cursor = "pointer";
+			box.movedByUser = false;
+			if ( !isMobile ) {
+				// of the box
+				box.deltaX = null;	
+				box.deltaY = null;
+				box.onmousedown = function( event ) {
+					var self = this;
+					self.active = true;
+					colB.activeBox = self;
+					if ( event.target == self ) {
+						self.deltaX = event.offsetX;
+						self.deltaY = event.offsetY;
+					}
+					else {
+						for ( var i = 0; i < self.children.length; i++ ) {
+							if ( event.target == self.children[i] ) {
+								self.deltaX = event.offsetX + parseFloat( self.children[i].style.left );
+								self.deltaY = event.offsetY + parseFloat( self.children[i].style.top );
+							}
+						}
+					}
+					for ( var i = 0; i < colB.children.length; i++ ) {
+						if ( colB.children[i] == self ) {
+							if ( i < colB.children.length - 1 ) {
+								colB.removeChild( self );
+								colB.appendChild( self );
+								self.doNotRedirect = true;
+							}
+							else {
+								self.doNotRedirect = false;
+							}
+							
+							break;
+						}
+					}
+				}
+				box.onmouseup = function( event ) {
+					var self = this;
+					self.active = false;
+					self.deltaX = null;
+					self.deltaY = null;
+					
+					colB.activeBox = null;
+					
+					if ( !self.doNotRedirect ) {
+						var state = self.state;
+						if ( select2.value != state ) {
+							select2.value = state;
+							for ( var i = 0; i < charts.length; i++ ) {
+								var isChecked = false;
+								if ( i % 2 == 1 ) {
+									isChecked = charts[i].checkbox.checked;
+								}
+								
+								updateChart( charts[i], state );
+								if ( isChecked ) {
+									charts[i].checkbox.checked = true;
+									charts[i].checkbox.onclick();
+								}
+							}
+						}
+						
+						var y = parseInt( base.style.paddingTop ) + update.offsetHeight + languageDiv.offsetHeight
+							+ parseFloat( languageDiv.style.marginBottom ) + row1.offsetHeight 
+							+ parseInt( row1.style.marginBottom ) / 2;
+						setTimeout( function() {
+							window.scrollTo( { left: 0, top: y, behavior: "smooth" } );
+						}, 1 );
+					}
+				}
+			}
+			else {
+				box.ontouchend = function() {
+					var self = this;
+					var state = self.state;
+					if ( select2.value != state ) {
+						select2.value = state;
+						for ( var i = 0; i < charts.length; i++ ) {
+							updateChart( charts[i], state );
+						}
+					}
+					
+					var y = parseInt( base.style.paddingTop ) + update.offsetHeight + languageDiv.offsetHeight
+						+ parseFloat( languageDiv.style.marginBottom ) + row1.offsetHeight 
+						+ parseInt( row1.style.marginBottom ) / 2;
+					setTimeout( function() {
+						window.scrollTo( { left: 0, top: y, behavior: "smooth" } );
+					}, 1 );
+				};
+			}
+			
+			return box;
+		}
+		
+		function getEntryFromToday( state ) {
+			return dataFromToday.getEntry( state );
+		}
+		
+		function getEntryFromYesterday( state ) {
+			for ( var i = 0; i < entriesFromYesterday.length; i++ ) {
+				if ( entriesFromYesterday[i].s == state ) {
+					return entriesFromYesterday[i];
+				}
+			}
+			
+			return null;
+		}
+		
+		function select2Change() {
+			var state = select2.value;
+			for ( var i = 0; i < charts.length; i++ ) {
+				var isChecked = false;
+				if ( i % 2 == 1 ) {
+					isChecked = charts[i].checkbox.checked;
+				}
+				
+				updateChart( charts[i], state );
+				if ( isChecked ) {
+					charts[i].checkbox.checked = true;
+					charts[i].checkbox.onclick();
+				}
+			}
+		}
+		
+		function resetCharts() {
+			if ( select2.value != "USA" ) { 
+				select2.value = "USA";
+				for ( var i = 0; i < charts.length; i++ ) {
+					var checked = false;
+					if ( i % 2 == 1 ) {
+						checked = charts[i].checkbox.checked;
+					}
+					updateChart( charts[i], "USA" );
+					if ( checked ) {
+						charts[i].checkbox.checked = true;
+						charts[i].checkbox.onclick();
+					}
+				}
+			}
+		}
+		
+		function updateChart( chart, state ) {
+			makeChart( chart, state, baseWidth - parseInt( base.style.paddingLeft ) 
+				- parseInt( base.style.paddingRight ) );
+		}
+		// totalDeathsPer100000PeopleChart, totalDeathsChart, and newDeathsChart
+		function makeChart( chart, state, width ) {
+			if ( state == undefined && chart.state == undefined ) {
+				if ( chart.state == undefined ) {
+					throw new Error( "state must be defined" );
+				}
+				else {
+					state = chart.state;
+				}
+			}
+			
+			if ( chart.field == undefined && getField( chart.id ) != -1 ) {
+				chart.field = getField( chart.id );
+			}
+			if ( chart.field == undefined ) {
+				throw new Error( "provided div must be a chart" );
+			}
+			else if ( chart.canvas != undefined && ( chart.field % 2 == 1 && chart.canvas2 != undefined ) 
+				&& chart.canvas.offsetWidth == width && chart.state == state ) {
+				return;
+			}
+
+			chart.innerHTML = "";	// Reset
+			var style = chart.style;
+			
+			chart.style.width = width + "px";
+			var height = width * 0.375;	// height is 3/8 of width
+			chart.style.height = height + "px";
+			if ( chart.toXCoordinate == undefined ) {
+				chart.toXCoordinate = function( x ) {
+					var self = this;
+					var w = parseFloat( self.style.width );
+					return 0.9 * w / ( self.xAxisRange - 1 ) * ( x - 1 ) + 0.07 * w;
+				};
+				chart.toX = function( xCoordinate ) {
+					var self = this;
+					var w = parseFloat( self.style.width );
+					if ( xCoordinate >= 0.07 * w && xCoordinate <= 0.97 * w )
+						return ( self.xAxisRange - 1 ) / ( 0.9 * w ) * ( xCoordinate - 0.07 * w ) + 1;
+					else if ( xCoordinate >= 0.06 * w && xCoordinate <= 0.07 * w ) // Margin of error in xCoordinate
+						return 1;
+					else if ( xCoordinate >= 0.97 * w && xCoordinate <= 0.98 * w ) // Margin of error in xCoordinate
+						return self.xAxisRange;
+					else
+						return -1;
+				};
+				chart.toYCoordinate = function( y ) {
+					var self = this;
+					var h = parseFloat( self.style.height );
+					return -0.8 * h / self.yAxisRange * y + 0.85 * h;
+				};
+			}
+			
+			
+			style.borderStyle = "solid";
+			style.borderWidth = width / 1000 + "px";
+			
+			var numberOfPoints = chart.xAxisRange;
+			if ( chart.state != state ) {
+				var numberOfPoints;
+				if ( chart.field % 2 == 0 ) {
+					numberOfPoints = allData.length;
+				}
+				else {
+					numberOfPoints = allData.length - 1;
+				}
+				chart.state = state;
+				chart.months = new Array( numberOfPoints );
+				chart.days = new Array( numberOfPoints );
+				chart.years = new Array( numberOfPoints );
+				chart.numbers = new Array( numberOfPoints );	// Number of cases, cases per 100,000 people, or deaths
+				chart.sevenDayMovingAverages;
+				if ( chart.field % 2 == 1 ) {
+					chart.sevenDayMovingAverages = new Array( numberOfPoints );
+				}
+				var max = 0;
+				var dataValues = [ "cases", "cases", "cases_per_capita", "cases_per_capita", "deaths", "deaths", "case_mortality_rate"];
+				var dataValuesForIndividualEntries = [ "c", "c", "c_p_c", "c_p_c", "d", "d", "c_m_r"];
+				if ( chart.field % 2 == 0 ) {
+					for ( var i = 0; i < allData.length; i++ ) {
+						var data = allData[i];
+						chart.months[i] = data.month;
+						chart.days[i] = data.day;
+						chart.years[i] = data.year;
+						if ( chart.state == "USA" ) {
+							chart.numbers[i] = data[dataValues[chart.field]];
+						}
+						else {
+							var entry = data.getEntry( chart.state );
+							chart.numbers[i] = entry[dataValuesForIndividualEntries[chart.field]];
+						}
+						
+						if ( chart.numbers[i] > max ) {
+							max = chart.numbers[i];
+						}
+					}
+				}
+				else {
+					for ( var i = 1; i < allData.length; i++ ) {
+						var data = allData[i];
+						var yesterdayData = allData[i - 1];
+						chart.months[i - 1] = data.month;
+						chart.days[i - 1] = data.day;
+						chart.years[i - 1] = data.year;
+						if ( chart.state == "USA" ) {
+							chart.numbers[i - 1] = data[dataValues[chart.field]] - yesterdayData[dataValues[chart.field]];
+						}
+						else {
+							var entry = data.getEntry( chart.state );
+							var yesterdayEntry = yesterdayData.getEntry( chart.state );
+							chart.numbers[i - 1] = entry[dataValuesForIndividualEntries[chart.field]] 
+							- yesterdayEntry[dataValuesForIndividualEntries[chart.field]];
+						}
+						if ( chart.numbers[i - 1] > max ) {
+							max = chart.numbers[i - 1];
+						}
+					} 
+				}
+				
+				
+				if ( max >= 1 ) {
+					chart.exponent = parseInt( Math.log10( max ) );
+					chart.multiplier = max / Math.pow( 10, chart.exponent );
+				}
+				else {
+					chart.exponent = 0;
+					chart.multiplier = 1;
+				}
+				
+				if ( chart.field != 6 ) {
+					if ( chart.multiplier < 1.44375 && chart.exponent > 0 ) {
+						// rounded down for yAxisRange, satisfying the requirement that the multiplier for yAxisRange <= 15.
+						chart.multiplier *= 10;
+						chart.exponent--;
+					}
+				}
+				else {
+					if ( chart.multiplier < 1.44375 && chart.exponent > -1 ) {
+						// rounded down for yAxisRange, satisfying the requirement that the multiplier for yAxisRange <= 15.
+						chart.multiplier *= 10;
+						chart.exponent--;
+					}
+				}
+				
+				chart.xAxisRange = numberOfPoints;
+				// max = 75,000, multiplier = 7.5, exponent = 4, then yAxisRange = 8*10^4 = 80,000
+				// max = 7,011, multiplier = 7.011, exponent = 3, then yAxisRange = 7*10^3 = 7,000.
+				if ( max >= 1 ) {
+					// only occur if decimal is below a certain threshold.
+					if ( chart.multiplier < 1.03125 * parseInt( chart.multiplier ) ) {
+						chart.yAxisRange = parseInt( chart.multiplier ) * Math.pow( 10, chart.exponent );
+					}
+					else {
+						chart.yAxisRange = parseInt( chart.multiplier + 1 ) * Math.pow( 10, chart.exponent );
+					}	
+				}
+				else {
+					chart.yAxisRange = 1;
+				}
+			}
+			
+			var pointsForPolyline1 = "";
+			var pointsForPolyline2 = "";
+			for ( var x = 0; x < numberOfPoints; x++ ) {
+				var number = chart.numbers[x];
+				if ( chart.field != 6 && x == numberOfPoints - 1 ) {
+					if ( chart.field % 2 == 0 ) {
+						var difference = chart.numbers[x] - chart.numbers[x - 1];
+						if ( difference <= 0 ) {
+							continue;
+						}
+					}
+					else {
+						var difference = chart.numbers[x];
+						if ( difference <= 0 ) {
+							continue;
+						}
+					}
+				}
+				
+				var xCoordinate = chart.toXCoordinate( x + 1 );
+				var yCoordinate = chart.toYCoordinate( number );
+				pointsForPolyline1 += xCoordinate + "," + yCoordinate + " ";
+				
+				if ( chart.field % 2 == 1 && x >= 6 ) {
+					var sum = 0;
+					for ( var i = x - 6; i <= x; i++ ) {
+						sum += chart.numbers[i];
+					}
+					chart.sevenDayMovingAverages[x] = sum / 7;
+					
+					
+					if ( x >= 7 ) {
+						var xCoordinate2 = xCoordinate;
+						var yCoordinate2 = chart.toYCoordinate( chart.sevenDayMovingAverages[x] );
+						
+						pointsForPolyline2 += xCoordinate2 + "," + yCoordinate2 + " ";
+					}
+				}
+			}
+			
+			var draw = SVG().addTo( "#" + chart.id ).size( width, height );
+			draw.node.setAttribute( "id", "svg" + chart.field );
+			chart.svg = draw.node;
+			var strokesForPolyline1 = ["deepskyblue", "deepskyblue", "mediumpurple", "mediumpurple", "red", "red", "darkorange"];
+			chart.polyline1 = draw.polyline( pointsForPolyline1 );
+			chart.polyline1.fill( "none" );
+			chart.polyline1.stroke( { color: strokesForPolyline1[chart.field], width: width / 400, linecap: 'round', 
+				linejoin: 'round' } );
+			if ( chart.field % 2 == 1 ) {
+				var strokeColorsForPolyline2 = [null, "blue", null, "#6600ff", null, "#aa0000", null];
+				chart.polyline2 = draw.polyline( pointsForPolyline2 );
+				chart.polyline2.fill( "none" );
+				chart.polyline2.stroke( { color: strokeColorsForPolyline2[chart.field], width: width / 400, linecap: 'round', 
+					linejoin: 'round' } );
+				chart.polyline2.remove();
+			}
+
+			chart.cover = document.createElement( "div" );
+			chart.cover.style.position = "absolute";
+			chart.cover.style.top = 0.85 * height + "px";
+			chart.cover.style.left = 0.01 * width + "px";
+			chart.cover.style.width = 0.98 * width + "px";
+			chart.cover.style.height = 0.14 * height + "px";
+			chart.cover.style.textAlign = "bottom";
+			chart.appendChild( chart.cover );
+			
+			chart.xAxis = document.createElement( "div" );
+			chart.xAxis.style.position = "absolute";
+			chart.xAxis.style.top = 0.85 * height - height / 400 + "px";
+			// to the left by the same amount to cover this extension
+			chart.xAxis.style.left = 0.06 * width - height / 400 + "px";
+			chart.xAxis.style.width = 0.92 * width + height / 400 + "px";
+			chart.xAxis.style.height = height / 200 + "px";
+			chart.xAxis.style.backgroundColor = "black";
+			chart.appendChild( chart.xAxis );
+			
+			chart.yAxis = document.createElement( "div" );
+			chart.yAxis.style.position = "absolute";
+			chart.yAxis.style.top = 0.025 * height + "px";
+			chart.yAxis.style.left = 0.06 * width - height / 400 + "px";
+			chart.yAxis.style.width = height / 200 + "px";
+			chart.yAxis.style.height = 0.825 * height + "px";
+			chart.yAxis.style.backgroundColor = "black";
+			chart.appendChild( chart.yAxis );
+			
+			var interval = parseInt( chart.xAxisRange / 30 + 1 );
+			var horizontalSpacingBetweenPoints = chart.toXCoordinate( 2 ) - chart.toXCoordinate( 1 );
+			chart.ticks = new Array();
+			chart.labels = new Array();
+			for ( var x = 0; x < chart.xAxisRange; x++ ) {
+				if ( interval >= 2 ) {
+					if ( x % interval == 0 ) {
+						var xCoordinate = chart.toXCoordinate( x + 1 );
+						var yCoordinate = 0.85 * height;
+						var displayDate = document.createElement( "div" );
+						switch ( languageIndex() ) {
+							case 0:
+							case 2:
+							case 4: {
+								displayDate.innerHTML = chart.months[x] + "/" + chart.days[x];
+								break;
+							}
+							case 1:
+							case 3: {
+								displayDate.innerHTML = chart.days[x] + "/" + chart.months[x];
+								break;
+							}
+						}
+						
+						displayDate.style.position = "absolute";
+						displayDate.style.width = horizontalSpacingBetweenPoints * interval + "px";
+						displayDate.style.textAlign = "center";
+						var fontSize = parseInt( horizontalSpacingBetweenPoints * interval / 3 );
+						if ( fontSize > 0.015 * width )
+							fontSize = 0.015 * width;
+						displayDate.style.fontSize = fontSize + "px";
+						displayDate.style.left = xCoordinate - horizontalSpacingBetweenPoints * interval / 2 + "px";
+						displayDate.style.top = 0.865 * height + "px";
+						
+						chart.appendChild( displayDate );
+						chart.labels.push( displayDate );
+						
+						var tick = document.createElement( "div" );
+						tick.style.position = "absolute";
+						tick.style.left = xCoordinate - height / 600 + "px";
+						tick.style.top = yCoordinate - 0.01 * height + "px";
+						tick.style.width = height / 300 + "px";
+						tick.style.height = 0.02 * height + "px";
+						tick.style.backgroundColor = "black";
+						
+						chart.appendChild( tick );
+						chart.ticks.push( tick );
+					}
+				}
+				else {
+					var xCoordinate = chart.toXCoordinate( x + 1 );
+					var yCoordinate = 0.85 * height;
+					var displayDate = document.createElement( "div" );
+					displayDate.innerHTML = chart.months[x] + "/" + chart.days[x];
+					displayDate.style.position = "absolute";
+					displayDate.style.width = horizontalSpacingBetweenPoints * interval + "px";
+					displayDate.style.textAlign = "center";
+					var fontSize = parseInt( horizontalSpacingBetweenPoints * interval / 3 );
+					if ( fontSize > 0.015 * width )
+						fontSize = 0.015 * width;
+					displayDate.style.fontSize = fontSize + "px";
+					displayDate.style.left = xCoordinate - horizontalSpacingBetweenPoints * interval / 2 + "px";
+					displayDate.style.top = 0.865 * height + "px";
+					
+					chart.appendChild( displayDate );
+					chart.labels.push( displayDate );
+					
+					var tick = document.createElement( "div" );
+					tick.style.position = "absolute";
+					tick.style.left = xCoordinate - height / 600 + "px";
+					tick.style.top = yCoordinate - 0.01 * height + "px";
+					tick.style.width = 0.004 * height + "px";
+					tick.style.height = height / 300 + "px";
+					tick.style.backgroundColor = "black";
+					
+					chart.appendChild( tick );
+					chart.ticks.push( tick );
+				}
+			}
+			
+			var y = chart.yAxisRange;
+			var xCoordinate = 0.06 * width;
+			while ( y > 0 ) {
+				var yCoordinate = chart.toYCoordinate( y );
+				var majorTick = document.createElement( "div" );
+				majorTick.style.position = "absolute";
+				majorTick.style.left = xCoordinate - 0.005 * width + "px";
+				majorTick.style.top = yCoordinate - height / 600 + "px";
+				majorTick.style.width = 0.01 * width + "px";
+				majorTick.style.height = height / 300 + "px";
+				majorTick.style.backgroundColor = "black";
+				
+				chart.appendChild( majorTick );
+				chart.ticks.push( majorTick );
+				
+				var majorTickLabel = document.createElement( "div" );
+				if ( chart.field != 6 ) {
+					majorTickLabel.innerHTML = y.toLocaleString( language );
+				}
+				else {
+					majorTickLabel.innerHTML = y.toLocaleString( language ) + "%";
+				}
+				chart.appendChild( majorTickLabel );
+				chart.labels.push( majorTickLabel );
+				var fontSize = 14 * height / 600;
+				majorTickLabel.style.fontSize = fontSize + "px";
+				majorTickLabel.style.textAlign = "right";
+				majorTickLabel.style.position = "absolute";
+				majorTickLabel.style.lineHeight = fontSize + "px";
+				majorTickLabel.style.top = yCoordinate - fontSize / 2 + "px";
+				majorTickLabel.style.width = 0.053 * width + "px";	
+				
+				y -= Math.pow( 10, chart.exponent );
+			}
+			
+			if ( chart.field == 2 || chart.field == 3 || chart.field == 6 || chart.exponent > 0 ) {
+				y = chart.yAxisRange;
+				var decrement;
+				var resetSkipNumber;	// Iteration should be skipped every skip'th time. For example, if resetSkipNumber
+				var skipCounter = 0;	// When skipCounter reaches 0, then current iteration should be skipped.
+				var multiplier1 = chart.yAxisRange / Math.pow( 10, chart.exponent );
+				if ( multiplier1 < 5 ) {
+					decrement = 2 * Math.pow( 10, chart.exponent - 1 );
+					resetSkipNumber = 5;
+				}
+				else {
+					decrement = 5 * Math.pow( 10, chart.exponent - 1 );
+					resetSkipNumber = 2;
+				}
+				while ( y > 0 ) {
+					if ( skipCounter == 0 ) {
+						y -= decrement;
+						skipCounter = resetSkipNumber - 1;
+						continue;
+					}
+					
+					var yCoordinate = chart.toYCoordinate( y );
+					var minorTick = document.createElement( "div" );
+					minorTick.style.position = "absolute";
+					minorTick.style.left = xCoordinate - 0.003 * width + "px";
+					minorTick.style.top = yCoordinate - height / 600 + "px";
+					minorTick.style.width = 0.006 * width + "px";
+					minorTick.style.height = height / 300 + "px";
+					minorTick.style.backgroundColor = "black";
+					
+					chart.appendChild( minorTick );
+					chart.ticks.push( minorTick );
+					
+					var minorTickLabel = document.createElement( "div" );
+					if ( chart.field != 6 ) {
+						minorTickLabel.innerHTML = y.toLocaleString( language );
+					}
+					else {
+						minorTickLabel.innerHTML = y.toLocaleString( language ) + "%";
+					}
+					chart.appendChild( minorTickLabel );
+					chart.labels.push( minorTickLabel );
+					var fontSize = 10 * height / 600;
+					minorTickLabel.style.fontSize = fontSize + "px";
+					minorTickLabel.style.lineHeight = fontSize + "px";
+					minorTickLabel.style.textAlign = "right";
+					minorTickLabel.style.position = "absolute";
+					minorTickLabel.style.top = yCoordinate - fontSize / 2 + "px";
+					minorTickLabel.style.width = 0.053 * width + "px";
+					
+					y -= decrement;
+					skipCounter--;
+				}
+			}
+			
+			if ( chart.field % 2 == 1 ) {		
+				var checkboxDiv = document.createElement( "div" );	
+				checkboxDiv.innerHTML = '<label for="display7DayMovingAverage-' + chart.field + '" id="display7DayMovingAverageLabel-"' 
+					+ chart.field + '><input id="display7DayMovingAverage-' + chart.field + '" type="checkbox"></label>';	
+				var checkbox = checkboxDiv.children[0].children[0];
+				checkbox.type = "checkbox";
+				checkbox.setAttribute( "id", "display7DayMovingAverage-" + chart.field );
+				checkbox.style.width = 1.4 * 0.03 * height + "px";
+				checkbox.style.height = 1.4 * 0.03 * height + "px";
+				checkbox.chart = chart;
+				checkbox.style.position = "absolute";
+				checkbox.style.bottom = "0px";
+				checkbox.onclick = function() {
+					var self = this;
+					if ( self.checked ) {
+						self.chart.polyline2.addTo( "#svg" + self.chart.field );
+						self.chart.polyline1.opacity( 0.32 );
+					}
+					else {
+						self.chart.polyline2.remove();
+						self.chart.polyline1.opacity( 1 );
+					}
+				}
+				
+				var label = checkboxDiv.children[0];
+				label.style.marginBottom = "0px";
+				
+				var span = document.createElement( "span" );
+				switch ( languageIndex() ) {
+					case 0: {
+						span.innerHTML = "Display 7 day moving average";
+						break;
+					}
+					case 1: {
+						span.innerHTML = "Mostrar la media móvil de 7 días";
+						break;
+					}
+					case 2: {
+						span.innerHTML = "显示7天移动平均线";
+						break;
+					}
+					case 3: {
+						span.innerHTML = "Afficher la moyenne mobile sur 7 jours";
+						break;
+					}
+					case 4: {
+						span.innerHTML = "7日間の移動平均を表示";
+						break;
+					}
+				}
+				span.style.whiteSpace = "nowrap";
+				span.style.fontSize = 0.03 * height + "px";
+				span.style.marginBottom = "0px";
+				span.style.position = "absolute";
+				span.style.left = 0.06 * height + "px";
+				span.style.lineHeight = 0.042 * height + "px";
+				span.style.bottom = "0px";
+				
+				label.appendChild( span );
+				chart.display7DayMovingAverageLabel = label;
+				
+				checkboxDiv.appendChild( label );
+				checkboxDiv.style.position = "absolute";
+				checkboxDiv.style.bottom = 0.025 * height + "px";
+				
+				chart.appendChild( checkboxDiv );
+				// widthOfCheckboxDiv = left of span (incorporates width of checkbox) + width of span
+				var widthOfCheckboxDiv = 0.06 * height + span.offsetWidth;
+				checkboxDiv.style.width = widthOfCheckboxDiv + "px";
+				checkboxDiv.style.left = 0.5 * width - widthOfCheckboxDiv / 2 + "px";
+				
+				chart.checkbox = checkbox;
+			}
+			
+			chart.titleNode = document.createElement( "div" );
+			chart.titleNode.setAttribute( "class", "title" );
+			var titles;
+			switch ( languageIndex() ) {
+				case 0:  {
+					titles = [ 
+						": total cases", ": new cases", ": total cases per 100,000 people", ": new cases per 100,000 people", 
+						": total deaths", ": new deaths", ": case fatality rate"
+					];
+					break;
+				}
+				case 1: {
+					titles = [ 
+						": casos totales", ": nuevos casos", ": casos totales por 100,000 personas", ": nuevos casos por 100,000 personas", 
+						": muertes totales", ": nuevos muertes", ": tasa de letalidad"
+					];
+					break;
+				}
+				case 2: {
+					titles = [ 
+						"：累计确诊", "：新确诊", "：每10万人中的累计确诊", "：每10万人中的新确诊", 
+						"：累计死亡", "：新死亡", "：病死率"
+					];
+					break;
+				}
+				case 3: {
+					titles = [ 
+						": nombre total des cas", ": nouveaux cas", ": nombre total des cas pour 100 000 personnes", 
+						": nouveaux cas pour 100 000 personnes", ": nombre total des décès", ": nouveaux décès", ": taux de létalité"
+					];
+					break;
+				}
+				case 4: {
+					titles = [ 
+						"：累積診断", "：新たに診断された", "：10万人あたりの累積診断", 
+						"：10万人あたり新たに診断", "：累積死亡", "新たに死亡された", "：致死率"
+					];
+					break;
+				}
+			}
+			chart.titleNode.innerHTML = translate( chart.state ) + titles[chart.field];
+			if ( getComputedStyle( colB ).display != "none" ) {
+				chart.titleNode.style.fontSize = height / 24 + "px";
+			}
+			else {
+				chart.titleNode.style.fontSize = height / 16 + "px";
+			}
+			chart.titleNode.style.textAlign = "center";
+			chart.titleNode.style.position = "absolute";
+			chart.titleNode.style.top = "0px";
+			chart.titleNode.style.width = "100%";
+			chart.appendChild( chart.titleNode );
+			chart.resetTitle = function() {
+				var self = this;
+				self.titleNode.innerHTML = translate( chart.state ) + titles[self.field];
+			}
+			
+			var strings;
+			switch ( languageIndex() ) {
+				case 0: {
+					strings = [ 
+						"{s}: {n} total cases as of {m}/{d}/{y}", 
+						"{s}: {n} new cases on {m}/{d}/{y}", 
+						"{s}: {n} cases per 100,000 people on {m}/{d}/{y}", 
+						"{s}: {n} new cases per 100,000 people on {m}/{d}/{y}", 
+						"{s}: {n} total deaths on {m}/{d}/{y}", 
+						"{s}: {n} new deaths on {m}/{d}/{y}",
+						"{s}: {n}% case fatality rate as of {m}/{d}/{y}"
+					];
+					break;
+				}
+				case 1: {
+					strings = [ 
+						"{s}: {n} casos a partir de {d}/{m}/{y}", 
+						"{s}: {n} nuevos casos en {d}/{m}/{y}", 
+						"{s}: {n} casos por 100,000 personas a partir de {d}/{m}/{y}", 
+						"{s}: {n} nuevos casos por 100,000 personas en {d}/{m}/{y}", 
+						"{s}: {n} muertes a partir de {d}/{m}/{y}", 
+						"{s}: {n} nuevos muertes en {d}/{m}/{y}",
+						"{s}: {n}% tasa de letalidad a partir de {d}/{m}/{y}"
+					];
+					break;
+				}
+				case 2: {
+					strings = [ 
+						"{s}:截至{y}/{m}/{d}，共有{n}个确诊", 
+						"{s}:{y}/{m}/{d}，有了{n}个新确诊", 
+						"{s}:截至{y}/{m}/{d}，每10万人中共有了{n}个确诊", 
+						"{s}:{y}/{m}/{d}，每10万人中有了{n}个新确诊", 
+						"{s}:截至{y}/{m}/{d}，共有{n}个死亡", 
+						"{s}:{y}/{m}/{d}，有了{n}个新死亡",
+						"{s}:截至{y}/{m}/{d}，病死率是{n}%"
+					];
+					break;
+				}
+				case 3: {
+					strings = [ 
+						"{s}: {n} cas au {d}/{m}/{y}", 
+						"{s}: {n} nouveaux cas au {d}/{m}/{y}", 
+						"{s}: {n} cas pour 100000 personnes au {d}/{m}/{y}", 
+						"{s}: {n} nuevos casos por 100,000 personas en {d}/{m}/{y}", 
+						"{s}: {n} décès au {d}/{m}/{y}", 
+						"{s}: {n} nouveaux décès au {d}/{m}/{y}",
+						"{s}: {n}% taux de létalité au {d}/{m}/{y}"
+					];
+					break;
+				}
+				case 4: {
+					strings = [ 
+						"{s}：{y}/{m}/{d}の時点で、{n}個の診断があります", 
+						"{s}：{y}/{m}/{d}に{n}の新しい診断があります", 
+						"{s}：{y}/{m}/{d}の時点で、10万人あたり{n}個の診断があります", 
+						"{s}：{y}/{m}/{d}に10万人あたり{n}の新しい診断があります", 
+						"{s}：{y}/{m}/{d}の時点で、{n}個の死亡があります", 
+						"{s}：{y}/{m}/{d}に{n}の新しい死亡があります", 
+						"{s}：{y}/{m}/{d}の時点で、致死率は{n}％です"
+					];
+					break;
+				}
+			}
+			chart.titlePlaceholder = strings[chart.field];
+			
+			chart.xOfMouse = -1;
+			if ( !isMobile && chart.onmousemove == undefined ) {
+				chart.onmousemove = function( event ) {
+					var self = this;
+					var xCoordinate = event.pageX - parseFloat( base.style.paddingLeft );
+
+					var x = self.toX( xCoordinate );
+					x = parseInt( x + 0.5 );
+					if ( x <= 0 || x > self.xAxisRange ) {
+						self.resetTitle();
+						self.xOfMouse = -1;
+						return;
+					}
+					else if ( self.xOfMouse == x ) {
+						return;
+					}
+					if ( self.field != 6 && x == self.xAxisRange ) {
+						if ( self.field % 2 == 0 ) {
+							var difference = self.numbers[x - 1] - self.numbers[x - 2];
+							if ( difference <= 0 ) {
+								x--;
+							}
+						}
+						else {
+							var difference = self.numbers[x - 1];
+							if ( difference <= 0 ) {
+								x--;
+							}
+						}
+					}
+					
+					var numbers = self.numbers;
+					finalHTML = self.titlePlaceholder;
+					finalHTML = finalHTML.replaceAll( "{s}", translate( self.state ) );
+					finalHTML = finalHTML.replaceAll( "{y}", self.years[x - 1] );
+					finalHTML = finalHTML.replaceAll( "{m}", self.months[x - 1] );
+					finalHTML = finalHTML.replaceAll( "{d}", self.days[x - 1] );
+					finalHTML = finalHTML.replaceAll( "{n}", numbers[x - 1].toLocaleString( language ) );
+					
+					if ( self.field % 2 == 1 && self.checkbox.checked && x >= 7 ) {
+						var sevenDayMovingAverages = self.sevenDayMovingAverages;
+						switch ( languageIndex() ) {
+							case 0: {
+								finalHTML += "<br>7 day moving average: ";
+								break;
+							}
+							case 1: {
+								finalHTML += "<br>Media móvil de 7 días: ";
+								break;
+							}
+							case 2: {
+								finalHTML += "<br>7天移动平均：";
+								break;
+							}
+							case 3: {
+								finalHTML += "<br>Moyenne mobile sur 7 jours: ";
+								break;
+							}
+							case 4: {
+								finalHTML += "<br>7日間の移動平均：";
+								break;
+							}
+						}
+						if ( self.field == 3 ) {
+							var sevenDayMovingAverage = sevenDayMovingAverages[x - 1].toFixed( 1 );
+							if ( sevenDayMovingAverage == parseInt( sevenDayMovingAverage) ) {
+								sevenDayMovingAverage = parseInt( sevenDayMovingAverage );
+							}
+							finalHTML += sevenDayMovingAverage.toLocaleString( language );
+						}
+						else {
+							finalHTML += parseInt( sevenDayMovingAverages[x - 1] + 0.5 ).toLocaleString( language );
+						}
+					}
+					self.titleNode.innerHTML = finalHTML;
+					self.xOfMouse = x;
+				};
+				chart.onmouseleave = function() {
+					var self = this;
+					self.resetTitle();
+				};
+			}
+			else if ( isMobile && chart.ontouchmove == undefined ) {
+				chart.lastXCoordinate = null;
+				chart.lastYCoordinate = null;
+				
+				chart.ontouchstart = function( event ) {
+					var self = this;
+					chart.lastXCoordinate = event.pageX - parseFloat( base.style.paddingLeft );
+					// y is being recorded and used.
+					chart.lastYCoordiante = event.pageY;
+				}
+				
+				chart.ontouchmove = function( event ) {
+					var self = this;
+      				var xCoordinate = event.pageX - parseFloat( base.style.paddingLeft );
+					var yCoordinate = event.pageY;
+					
+					var deltaY = yCoordinate - self.lastYCoordiante;
+					var deltaX = xCoordinate - self.lastXCoordinate;
+					// the screen to zoom in/out).
+					// shifting the screen
+					if ( Math.abs( deltaY / deltaX ) < 1 && event.touches.length < 2 ) {
+						event.preventDefault();
+						event.stopPropagation();
+					}
+					
+					event.lastXCoordinate = xCoordinate;
+					event.lastYCoordiante = yCoordinate;
+					
+					var x = self.toX( xCoordinate );
+					x = parseInt( x + 0.5 );
+					if ( x <= 0 || x > self.xAxisRange ) {
+						self.resetTitle();
+						self.xOfMouse = -1;
+						return;
+					}
+					else if ( self.xOfMouse == x ) {
+						return;
+					}
+					if ( self.field != 6 && x == self.xAxisRange ) {
+						if ( self.field % 2 == 0 ) {
+							var difference = self.numbers[x - 1] - self.numbers[x - 2];
+							if ( difference <= 0 ) {
+								x--;
+							}
+						}
+						else {
+							var difference = self.numbers[x - 1];
+							if ( difference <= 0 ) {
+								x--;
+							}
+						}
+					}
+					
+					var numbers = self.numbers;
+					var field = self.field;
+					var finalHTML = "";
+					
+					var numbers = self.numbers;
+					finalHTML = self.titlePlaceholder;
+					finalHTML = finalHTML.replaceAll( "{s}", translate( self.state ) );
+					finalHTML = finalHTML.replaceAll( "{y}", self.years[x - 1] );
+					finalHTML = finalHTML.replaceAll( "{m}", self.months[x - 1] );
+					finalHTML = finalHTML.replaceAll( "{d}", self.days[x - 1] );
+					finalHTML = finalHTML.replaceAll( "{n}", numbers[x - 1].toLocaleString( language ) );
+					
+					if ( self.field % 2 == 1 && self.checkbox.checked && x >= 7 ) {
+						var sevenDayMovingAverages = self.sevenDayMovingAverages;
+						switch ( languageIndex() ) {
+							case 0: {
+								finalHTML += "<br>7 day moving average: ";
+								break;
+							}
+							case 1: {
+								finalHTML += "<br>Media móvil de 7 días: ";
+								break;
+							}
+							case 2: {
+								finalHTML += "<br>7天移动平均：";
+								break;
+							}
+							case 3: {
+								finalHTML += "<br>Moyenne mobile sur 7 jours: ";
+								break;
+							}
+							case 4: {
+								finalHTML += "<br>7日間の移動平均：";
+								break;
+							}
+						}
+						if ( self.field == 3 ) {
+							var sevenDayMovingAverage = sevenDayMovingAverages[x - 1].toFixed( 1 );
+							if ( sevenDayMovingAverage == parseInt( sevenDayMovingAverage) ) {
+								sevenDayMovingAverage = parseInt( sevenDayMovingAverage );
+							}
+							finalHTML += sevenDayMovingAverage.toLocaleString( language );
+						}
+						else {
+							finalHTML += parseInt( sevenDayMovingAverages[x - 1] + 0.5 ).toLocaleString( language );
+						}
+					}
+					self.titleNode.innerHTML = finalHTML;
+					self.xOfMouse = x;
+				};
+				
+				chart.ontouchend = function() {
+					var self = this;
+					self.resetTitle();
+					self.lastXCoordinate = null;
+					self.lastYCoordiante = null;
+				};
+			}
+		}
+		
+		function getField( id ) {
+			if ( id == "totalCasesChart" ) {
+				return 0;
+			}
+			else if ( id == "newCasesChart" ) {
+				return 1;
+			}
+			else if ( id == "totalCasesPer100000PeopleChart" ) {
+				return 2;
+			}
+			else if ( id == "newCasesPer100000PeopleChart" ) {
+				return 3;
+			}
+			else if ( id == "totalDeathsChart" ) {
+				return 4;
+			}
+			else if ( id == "newDeathsChart" ) {
+				return 5;
+			}
+			else if ( id == "deathRateChart" ) {
+				return 6;
+			}
+			else {
+				return -1;
+			}
+		}
+		
+		function displayInsignificantEntries() {
+			return displayInsignificantEntriesCheckbox.checked;
+		}
+		
+		function isUpdatedToday( state ) {
+			var entry = dataFromToday.getEntry( state );
+			var yesterdayEntry = dataFromYesterday.getEntry( state );
+			return entry.c - yesterdayEntry.c > 0 || entry.d - yesterdayEntry.d > 0;
+		}
+		
+		function isUSMapVisible() {
+			return window.getComputedStyle( colB ).display != "none";
+		}
+		
+		function select0Change() {
+			language = select0.value;
+			
+			var date;
+			var time = calendarFromToday.hour + ":";
+			if ( calendarFromToday.minute >= 10 ) {
+				time += calendarFromToday.minute;
+			}
+			else {
+				time += "0" + calendarFromToday.minute;
+			}
+			switch ( languageIndex() ) {
+				case 0: {
+					document.title = "Coronavirus tracker";
+					
+					dismissUpdateButton.innerHTML = "OK";
+					
+					rowA2.children[0].children[1].innerHTML = "Display states/territories with less than 2,000 cases.";
+					resetChartsButton.innerHTML = "Reset charts";
+					
+					date = calendarFromToday.month + "/" + calendarFromToday.day + "/" + calendarFromToday.year;
+					updateNotification.innerHTML = "An update from " + date + ", " + time 
+						+ " ET is currently in effect.";
+					lastUpdatedOn = "Last updated on " + date + ", " + time + " ET. Source of data: "
+						+ "<a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+						+ "worldometers.info/coronavirus/country/us</a>. NOT FOR COMMERICAL USE.";
+					break;
+				}
+				case 1: {
+					document.title = "Rastreador de coronavirus";
+					
+					dismissUpdateButton.innerHTML = "Bueno";
+					
+					rowA2.children[0].children[1].innerHTML = "Mostrar estados/territorios con menos de 2,000 casos.";
+					resetChartsButton.innerHTML = "Restablecer gráficos";
+					
+					date = calendarFromToday.month + "/" + calendarFromToday.day + "/" + calendarFromToday.year;
+					updateNotification.innerHTML = "Una actualización de " + date + ", " + time + 
+						" hora del este actualmente está activa.";
+					lastUpdatedOn = "Ultima actualización en " + date + ", " + time + " hora del este. Fuente "
+						+ "de datos: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+						+ "worldometers.info/coronavirus/country/us</a>. NO ES PARA USO COMERCIAL.";
+					break;
+				}
+				case 2: {
+					document.title = "冠状病毒追踪器";
+					
+					dismissUpdateButton.innerHTML = "好的";
+					
+					rowA2.children[0].children[1].innerHTML = "显示少于2,000个累计确诊的州/领土。";
+					resetChartsButton.innerHTML = "重置图表";
+					
+					date = calendarFromToday.year + "/" + calendarFromToday.month + "/" + calendarFromToday.day;
+					updateNotification.innerHTML = "一个从" + date + "，" + time + "东部时间的更新正在生效。";
+					lastUpdatedOn = "最后更新时间：" + date + "，" + time + " 东部时间。 数据来源: "
+						+ "<a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+						+ "worldometers.info/coronavirus/country/us</a>。 不用于商业用途。";
+					
+					break;
+				}
+				case 3: {
+					document.title = "Traqueur de coronavirus";
+					
+					dismissUpdateButton.innerHTML = "D'accord";
+					
+					rowA2.children[0].children[1].innerHTML = "Afficher les états/territoires avec moins de 2 000 cas.";
+					resetChartsButton.innerHTML = "Réinitialiser les graphiques";
+					
+					date = calendarFromToday.month + "/" + calendarFromToday.day + "/" + calendarFromToday.year;
+					updateNotification.innerHTML = "Une mise à jour à partir de " + date + ", " + time + 
+						" heure de l'Est est actuellement en vigueur.";
+					lastUpdatedOn = "Dernière mise à jour à " + date + ", " + time + " heure de l'Est. "
+						+ "Source de données: <a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+						+ "worldometers.info/coronavirus/country/us</a>. PAS POUR UN USAGE COMMERCIAL.";
+					break;
+				}
+				case 4: {
+					document.title = "コロナウイルストラッカー";
+					
+					dismissUpdateButton.innerHTML = "よし";
+					
+					rowA2.children[0].children[1].innerHTML = "2,000件未満の州/地域を表示します。";
+					resetChartsButton.innerHTML = "チャートをリセット";
+					
+					date = calendarFromToday.year + "/" + calendarFromToday.month + "/" + calendarFromToday.day;
+					updateNotification.innerHTML = "現在、東部時の" + date + "、" + time + "からの更新が有効です。";
+					lastUpdatedOn = "最終更新日は" + date + "、東部時の" + time + "です。データのソース:"
+						+ "<a target='_blank' href='http://worldometers.info/coronavirus/country/us'>"
+						+ "worldometers.info/coronavirus/country/us</a>。商用目的ではありません。";
+					
+					break;
+				}
+			}
+			
+			for ( var i = 0; i < states.length; i++ ) {
+				var state = states[i];
+				var option = select2.children[i];
+				option.innerHTML = translate( state );
+				option.setAttribute( "value", state );
+			}
+			
+			for ( var i = 0; i < charts.length; i++ ) {
+				var state = charts[i].state;
+				var checked = false;
+				if ( i % 2 == 1 ) {
+					checked = charts[i].checkbox.checked;
+				}
+				charts[i].state = null;	// Force reload of data
+				updateChart( charts[i], state );
+				if ( checked ) {
+					charts[i].checkbox.checked = true;
+					charts[i].checkbox.onclick();
+				}
+			}
+			
+			var dataDisplayHeaderFile = "../data-display-header-" + language + ".html";
+			$.get( dataDisplayHeaderFile, function( responseText ) {
+				dataDisplayHeaderHTML = responseText;
+				refreshDataDisplay();
+				loadMap();
+				for ( var i = 0; i < charts.length; i++ ) {
+					var checked = false;
+					if ( i % 2 == 1 ) {
+						checked = charts[i].checkbox.checked;
+					}
+					makeChart( charts[i], charts[i].state, baseWidth - parseInt( base.style.paddingLeft ) 
+						- parseInt( base.style.paddingRight ) );
+					if ( checked ) {
+						charts[i].checkbox.checked = true;
+						charts[i].checkbox.onclick();
+					}
+					if ( i < charts.length - 1 ) {
+						charts[i].style.marginBottom = 0.03 * baseWidth + "px";
+					}
+				}
+				updateCookies();
+			});
+		}
+		
+		var states = [
+			"USA", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", 
+			"District of Columbia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas",
+			"Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", 
+			"Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", 
+			"North Dakota", "Northern Mariana Islands", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico", 
+			"Rhode Island", "South Carolina", 	"South Dakota", "Tennessee", "Texas", "U.S. Virgin Islands", "Utah", "Vermont", 
+			"Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
+		];
+		var esTranslations = [
+			"EE.UU", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", 
+			"Distrito de Columbia", "Florida", "Georgia", "Guam", "Hawái", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", 
+			"Kentucky", "Luisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Misisipí", "Misuri", 
+			"Montana", "Nebraska", "Nevada", "Nueva Hampshire", "Nueva Jersey", "Nuevo México", "Nueva York", 
+			"Carolina del Norte", "Dakota del Norte", "Islas Marianas del Norte", "Ohio", "Oklahoma", "Oregón", "Pensilvania", 
+			"Puerto Rico", "Rhode Island", "Carolina del Sur", "Dakota del Sur", "Tennessee", "Texas", 
+			"Islas Vírgenes de EE.UU", "Utah", "Vermont", "Virginia", "Washington", "Virginia del Oeste", "Wisconsin", "Wyoming"
+		];
+		var cnTranslations = [
+			"美国", "阿拉巴马州",  "阿拉斯加州", "亚利桑那州", "阿肯色州", "加利福尼亚州", "科罗拉多州", "康涅狄格州", "特拉华州", "哥伦比亚特区",
+			"佛罗里达州", "乔治亚州", "关岛", "夏威夷", "爱达荷州", "伊利诺伊州", "印第安纳州", "爱荷华州", "堪萨斯州", "肯塔基州",
+			"路易斯安那州", "缅因州", "马里兰州", "马萨诸塞州", "密歇根州", "明尼苏达州", "密西西比州", "密苏里州", "蒙大拿州", 
+			"内布拉斯加州", "内华达州", "新罕布什尔州", "新泽西州", "新墨西哥州", "纽约州", "北卡罗来纳州", "北达科他州",
+			"北马里亚纳群岛", "俄亥俄州", "俄克拉荷马州", "俄勒冈州", "宾夕法尼亚州", "波多黎各", "罗德岛", "南卡罗来纳州", "南达科他州", 
+			"田纳西州", "得克萨斯州", "美属维尔京群岛", "犹他州", "佛蒙特", "弗吉尼亚州", "华盛顿州", "西弗吉尼亚州", "威斯康星州", "怀俄明州"
+		];
+		var frTranslations = [
+			"États-Unis", "Alabama", "Alaska", "Arizona", "Arkansas", "Californie", "Colorado", "Connecticut", "Delaware", 
+			"District de Colombie", "Floride", "Géorgie", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", 
+			"Kentucky", "Louisiane", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", 
+			"Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "Nouveau Mexique", "New York", "Caroline du Nord", 
+			"Dakota du Nord", "Îles Mariannes du Nord", "Ohio", "Oklahoma", "Oregon", "Pennsylvanie", "Porto Rico", 
+			"Rhode Island", "Caroline du Sud", "Dakota du Sud", "Tennessee", "Texas", "Îles Vierges américaines", "Utah", 
+			"Vermont", "Virginie", "Washington", "Virginie-Occidentale", "Wisconsin", "Wyoming"
+		];
+		var jpTranslations = [
+			"米国", "アラバマ", "アラスカ", "アリゾナ", "アーカンザス", "カリフォルニア", "コロラド", "コネチカット", "デラウェア", 
+			"コロンビア特別区", "フロリダ", "ジョージア", "グアム", "ハワイ", "アイダホ", "イリノイ", "インディアナ", "アイオワ", 
+			"カンザス", "ケンタッキー", "ルイジアナ", "メイン", "メリーランド", "マサチューセッツ", " ミシガン", "ミネソタ", 
+			"ミシシッピ", "ミズーリ", "モンタナ", "ネブラスカ", "ネバダ", "ニューハンプシャー", "ニュージャージー", "ニューメキシコ", 
+			"ニューヨーク", "ノースカロライナ", "ノースダコタ", "北マリアナ諸島", "オハイオ", "オクラホマ", "オレゴン", "ペンシルベニア",
+			"プエルトリコ", "ロードアイランド", " サウスカロライナ", "サウスダコタ", "テネシー", "テキサス", "米国バージン諸島", "ユタ", 
+			"バーモント", "バージニア", "ワシントン", "ウェストバージニア", "ウィスコンシン", "ワイオミング"
+		];
+		function translate( state ) {
+			if ( language == "en-US" ) {
+				return state;
+			}
+			for ( var i = 0; i < states.length; i++ ) {
+				if ( state == states[i] ) {
+					switch ( languageIndex() ) {
+						case 1: {
+							return esTranslations[i];
+						}
+						case 2: {
+							return cnTranslations[i];
+						}
+						case 3: {
+							return frTranslations[i];
+						}
+						case 4: {
+							return jpTranslations[i];
+						}
+					}
+				}
+			}
+		}
+		
+		function updateCookies() {
+			var obj = {};
+			obj.language = language;
+			obj.sortingMethod = sortingMethod;
+			obj.displayInsignificantEntries = displayInsignificantEntries();
+			var keyValuePairs = document.cookie.split( ';' ); 
+			for ( var i = 0; i < keyValuePairs.length; i++ ) {
+				document.cookie = keyValuePairs[i] + "= ;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+			}
+			document.cookie = "userSettings=" + JSON.stringify( obj ) + ";";
+			document.cookie = "expires=" + ( Date.now() + 18144000 ) + ";";
+		}
+		
+		function languageIndex() {
+			switch ( language ) {
+				// the same, but that won't matter; langauge and therefore languageIndex() depend on the VALUE of
+				// For example, if the user selects French (option at position 2 in select0), languageIndex() will still 
+				case "en-US": {
+					return 0;
+				}
+				case "es-MX": {
+					return 1;
+				}
+				case "zh-CN": {
+					return 2;
+				}
+				case "fr-FR": {
+					return 3;
+				}
+				case "ja-JP": {
+					return 4;
+				}
+				default: {
+					return -1;
+				}
+			}
+		}
+		
+		init();
+	});
+}) ();
